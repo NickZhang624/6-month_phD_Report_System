@@ -1,0 +1,697 @@
+/* Start MAIN PAGE all  */
+*{
+	box-sizing: border-box;
+	margin:0;
+	padding:0;
+	font-family: 'Oswald', sans-serif;
+}
+
+body {
+	margin:0;
+	background-size: cover;
+	background-image: url(../images/page_bg_01.jpg);
+}
+
+.wrapper {
+	margin: -30px auto;
+    background: #fdfdfd;
+	text-shadow: none;
+	width: 90%;
+}
+
+div#container-fluid{
+	width: 500px;
+	margin: 0px auto;
+}
+/* .container-fluid:before, .container-fluid:after {
+	display: table;
+	content: "";
+	line-height: 0;
+}
+.container-fluid:after {
+	clear: both;
+} */
+
+/* header: blue section with logo and profile block */
+#page-header{
+	position:fixed;
+	top:0px;
+	height: 100px;
+	background-image: url(../images/navbar.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-size: 100% 100%;
+	width: 90%;
+	display: block;
+	padding: 0px !important; 
+	text-shadow: none !important;
+	z-index: 1;
+}
+#logo{
+	position: fixed;
+	top: 0;
+	left: 7em;
+	width: 100px;
+	height: 100px;
+}
+#profileblock	{
+	position: fixed;
+	top: 1.5em;
+	right: 7em;
+}
+header .usertext{
+	color:#fff;
+	font-size: 1.3em;
+	font-weight: 700;
+	padding-bottom: 100em;
+}
+
+/* navbar users */
+
+#mainnav2{
+	position: fixed;
+	background-color: rgb(223, 219, 219);
+	color: #4137e8;
+	font-weight: 700;
+	width: 90%;
+	top:140px;
+	border: rgb(223, 219, 219);
+	border-radius: 0px;
+	z-index: 1;
+}
+
+#mainnav{
+	position: fixed;
+	background-color: #FDDA2D;
+	color: #fff;
+	width: 90%;
+	top:100px;
+	border: #FDDA2D;
+	border-radius: 0px;
+	z-index: 1;
+}
+
+/* Toggle inside section A */
+div.container-fluid ul.nav#navbar-nav li.dropdown ul.dropdown-menu li a{
+	background-color: white;
+	color: #3147E8;
+	text-decoration: none;
+	z-index: 1;
+}
+div.container-fluid ul.nav#navbar-nav li.dropdown ul.dropdown-menu li a:hover{
+	background-color: gray;	
+	color: white;
+	text-decoration: none;
+}
+
+
+/* Toggle inside section A */
+div.container-fluid ul.nav#navbar-nav2 li.dropdown ul.dropdown-menu li a{
+	background-color: white;
+	color: #3147E8;
+	text-decoration: none;
+	z-index: 1;
+}
+div.container-fluid ul.nav#navbar-nav2 li.dropdown ul.dropdown-menu li a:hover{
+	background-color: gray;	
+	color: white;
+	text-decoration: none;
+}
+#nav-item {
+	color: #495057;
+	font-weight: 600;
+	text-decoration: none;
+}
+#nav-item:active {	
+	background-color: #3147E8;
+	color:#fff;
+}
+#nav-item:focus{
+	background-color: #3147E8;
+	color:#fff;
+}
+#nav-item:hover {
+	background-color: #3147E8;
+	color: #fff;
+}
+#nav-item:focus{
+	background-color: #3147E8;
+}
+#nav-item:hover {
+	background-color: #3147E8;
+}
+#nav-item li.active > a {
+	background-color: #333;
+	color: #fff;
+}
+
+/* main content */
+#maincontent{
+	padding-top: 240px;
+	background-color: white;
+}
+
+
+/* BUTTONS */
+
+/* button area*/
+.buttonArea{
+	padding: 10px;
+	margin: 2em 0em 5em 37em;
+	/* margin-top: 5em;
+	margin-left: 37em; */
+	background-color: transparent;
+}
+.buttonAreaC{
+	padding: 5px 5px 10px 5px;
+	/* margin-top: 7em; */
+	margin-left: 15em;
+}
+
+/* edit button */
+.myBtn{
+	border-color: transparent;
+	background-color: transparent;
+	margin-left: 40%;
+	/* padding-bottom: 25px; */
+}
+.myBtn:hover{
+	border: 1px solid #888;
+	background-color: #888;
+}
+/* Previous button */
+.prevBtn{
+	height: 45px;
+	border-color: transparent;
+	background-color: transparent;
+}
+.prevBtn:hover{
+	border: 1px solid #888;
+	background-color: #888;
+}
+
+/* add button */
+.addBtn{
+	border-color: transparent;
+	background-color: transparent;
+	border-color: transparent;
+}
+.addBtn:hover{
+	border: 1px solid #888;
+	background-color: transparent;
+}
+.addBtn:active{
+	border: 1px solid #888;
+	background-color: #888;
+}
+
+
+/* confirm changes button */
+.confChBtn{
+	border-color: transparent;
+	background-color: transparent;
+}
+.confChBtn:hover{
+	border: 1px solid #888;
+	background-color: #888;
+}
+
+
+/* Next buttons  */
+.nxtBtn{
+	height: 45px;
+	border-color: transparent;
+	background-color: transparent;
+}
+.nxtBtn:hover{
+	border: 1px solid #888;
+	background-color: #888;
+}
+
+/* save and exit button */
+.snxBtn{
+	height: 45px;
+	border-color: transparent;
+	background-color: transparent;
+	color: #4137e8;
+	padding:7px;
+}
+.snxBtn:hover{
+	border: 1px solid #888;
+	background-color: #888;
+}
+.glyphicon-floppy-save{
+	font-size: 20px
+}  button
+
+/* submit buttons */
+
+.sbmBtn{
+	width: 80px;
+	height: 25px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 10px;
+	text-transform: uppercase;
+	letter-spacing: 2.5px;
+	font-weight: 500;
+	color: #fff;
+	background-color: #FDDA2D;
+	border: none;
+	border-radius: 45px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease 0s;
+	cursor: pointer;
+	outline: none;
+}
+.sbmBtn:hover {
+	background-color: #4137e8;
+	box-shadow: 0px 15px 20px rgba(150, 213, 245, 0.4);
+	color: #fff;
+	transform: translateY(-7px);
+}
+
+/* confirm change buttons */
+.cchgBtn{
+	background-color: transparent;
+	border-color: transparent;
+	border-radius: 100%;
+}
+.cchgBtn:hover {
+	background-color: green;
+	box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+	color: #fff;
+	transform: translateY(-7px);
+}
+
+/* checkbox into icon button */
+.mycheckbox input[type="checkbox"] {
+	display: none;
+  }
+  .mycheckbox input[type="checkbox"]+label {
+	 background: url(/images/trash.svg) no-repeat;
+	width:20px;
+	height: 20px;
+  }
+  .mycheckbox input[type="checkbox"]:checked + label {
+	background: url(/images/trash.svg);
+	width: 20px;
+	height: 20px;
+  }
+
+  /* delete buttons */
+.delBtn{
+	padding-top: 20px;
+	border-color: transparent;
+	background-color: transparent;
+}
+.delBtn:hover{
+	border: 1px solid #888;
+	background-color: #888;
+}
+.delBtn:active{
+	border: 1px solid #888;
+	background-color: #888;
+}
+
+/* delete button d5 */
+.delBtnD5{
+	padding-top: 0px;
+	border-color: transparent;
+	background-color: transparent;
+}
+.delBtnD5:hover{
+	border: 1px solid #888;
+	background-color: #888;
+}
+.delBtnD5:active{
+	border: 1px solid #888;
+	background-color: #888;
+}
+
+
+/* information button */
+#b1Info, #b2Info, #cInfo, #d1Info, #d2Info, #d3Info, #d4Info, #fInfo{
+	font-style: italic;
+}
+.iInfo {
+	padding-top: 10px;
+	border-color: transparent !important;
+	background-color: transparent !important;
+}
+
+/* titles */
+
+h2{
+    font-family: "Open Sans",sans-serif !important;
+    color: rgb(52, 51, 51) !important;
+	padding: 10px 0px 15px 20px !important;
+    margin-top: 0;
+    font-size: 2.5rem !important;
+    /* line-height: 1.54rem !important; */
+    font-weight: 700!important;
+}
+
+h3{
+    font-family: "Open Sans",sans-serif;
+    color: #3147E8 !important;
+	padding: 10px 0px 5px 10px !important;
+    margin-top: 0;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    font-weight: 500!important;
+}
+
+h4{
+	color: #4137e8 !important;
+	font-weight: 700 !important;
+	font-size: 14px !important;
+	text-align: center !important;
+}
+
+.hiddentext{
+	color: transparent !important;
+}
+
+/* up chevon */
+
+/* .back-to-top {
+    position: fixed;
+    bottom: 2em;
+    right: 1%;
+    display: none;
+    text-align: center;
+    font: 11px/100%;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #2b4ae7;
+} */
+
+/* section{
+	margin-left: 30px;
+} */
+.table>tbody>tr>td{
+	border-top: 0px !important;
+}
+
+.table {
+	border: transparent !important;
+}
+
+.dropdown-header{
+	-webkit-appearance: none;
+    padding: 6px 20px !important;
+    width: 100%;
+	/* height: 34px; */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px !important;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    color: #555 !important;
+}
+/* textarea on forms */
+.hs-input{
+	-webkit-appearance: none;
+    padding: 6px 20px !important;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px !important;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    color: #555 !important;
+}
+
+/* label on  QB */
+.quest{
+	font-size: 15px;
+	color: #555 !important;
+	font-weight: 100;
+}
+
+option{
+	color: #223254;
+	display: none;
+}
+&:focus{
+	outline: none;
+	border-color: #0077FF;
+	box-shadow: 0 0 0 2px;
+}
+
+/*section A*/
+
+#sec-A1, #sec-A2, #sec-A3, #sec-A4{
+	color: #000000; 
+	position: relative;
+	padding: 0px 0px 0px 60px !important;
+}
+
+#sec-B2{
+	font-size: 1.2rem;
+    line-height: 1.5;
+	min-height: 60vh;
+    color: #000;
+	padding-left: 40px !important;
+}
+#sec-C1{
+	font-size: 1em !important;
+	color: grey;
+	margin-left: 30%;
+	min-height: 40vh;
+}
+#sec-C1 #faceRst{
+	font-size: 14px;
+	color: #FDDA2D;
+	font-weight: 600;
+	text-align: center;
+}
+#sec-C1 #textArea{
+	color: black;
+	font-size: 0.8em;
+	font-weight: 400;
+	text-align: left;
+}
+#sec-C2{
+	font-size: 16px;
+	color: black;
+	padding-top: 10em;
+}
+
+
+#footer_main{ 
+	background-color: #3147E8;
+	color: #fff;
+	font-size: 0.8em;
+	text-align: center;
+	padding: 0.3em;
+	width: 100%;
+}
+
+
+.landingblock{
+	width: 100%;
+	padding-top: 10px;
+}
+.lleft{
+	float:left;
+	width:50%;
+}
+#milestoneroad{
+	float:right;
+	width:50%;
+}
+#currtable{
+	width:90%;
+}
+#currtable a{
+	text-decoration: none;
+}
+#currtable ul{
+	list-style: none;
+}
+#statusreport{
+	padding-left: 0em !important;
+	list-style: none;
+}
+
+#prevtable{
+    width:40%;
+    float: left;
+    border: white !important;   
+}
+#h3prev {
+    margin: 15em 0px 0px 0px !important;
+}
+
+#adminHome {    
+    min-height: 60vh;
+    position: relative; 
+    padding: 0px 2em 5em 2em;
+}
+ 
+/* Style the buttons */
+.btnAdmin {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  
+  /* Style the active class (and buttons on mouse-over) */
+  .btnAdmin:hover {
+    background-color: red;
+    color: white;
+  }
+  .btnAdmin:active {
+    background-color: orange;
+    color: white;
+  }
+ 
+  .tableSummary {    
+  margin: 2.5em 0px 2.5em 3em !important;
+}
+ 
+#summaryPage {
+    min-height: 60vh;
+    position: relative;
+    padding: 0px 2em 5em 2em;   
+}
+
+#adminHome {    
+    min-height: 60vh;
+    position: relative; 
+    padding: 0px 2em 5em 2em;
+}
+ 
+.btnAdmin {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  
+ 
+  .btnAdmin:hover {
+    background-color: red;
+    color: white;
+  }
+  .btnAdmin:active {
+    background-color: orange;
+    color: white;
+  }
+ 
+.tableSummary {    
+  margin: 2.5em 0px 2.5em 3em !important;
+}
+ 
+/* K */
+.summaryPage {
+    min-height: 85vh !important;
+    position: relative !important;
+    padding: 0px 2em 5em 2em !important;   
+}
+ 
+/* K */
+#noti {
+    min-height: 60vh;
+    position: relative; 
+    padding: 5px 10em 5em 5em;
+}
+ 
+/* K */
+h4.toggleSummary {
+    color: #4137e8 !important;
+    font-weight: 700 !important;
+    font-size: 14px !important; 
+}
+ 
+h4.toggleSummary:hover {
+    color: grey !important;
+    font-weight: 700 !important;
+    font-size: 14px !important; 
+}
+ 
+/* K */
+.sendNoti{
+    /* border-color: #FDDA2D; */
+    border-color: #4137e8;
+    background-color: #4137e8;
+    color: white;
+    height: 45px;   
+}
+.SendNoti:hover{
+    border: 1px solid #888 !important;
+    background-color: #888 !important;
+}
+ 
+/* K */
+.inputNoti {
+    width: 35em;
+}
+ 
+/* K */
+.titleNoti {
+    width: 60em;
+}
+ 
+/* K */
+.secE {
+    min-height: 50vh !important;
+    position: relative !important;
+    padding: 0px 5em 5em 5em !important;
+    /* background-color: yellow; */
+}
+ 
+/* K */
+td .convenorData {
+        font-weight: 700 !important;
+        font-size: 14px !important;
+        text-align: center !important;
+    }
+ 
+/* K */
+.convenorHome {
+    min-height: 60vh;
+    position: relative;
+    padding: 0px 5em 5em 5em;
+}
+ 
+/* K */
+.secEadmin {
+    min-height: 10vh !important;
+    position: relative !important;
+    padding: 0px 5em 5em 5em !important;
+}
+
+#h3prev {
+    margin: 15em 0px 0px 0px !important;
+}
+
+/* K */
+.toggleSummary {
+    color: #4137e8 !important;
+    font-weight: 700 !important;
+    font-size: 14px !important; 
+}
+ 
+.toggleSummary:hover {
+    color: grey !important;
+    font-weight: 700 !important;
+    font-size: 14px !important; 
+}
+
+.secE1 {
+    min-height: 20vh !important;
+    position: relative !important;
+    padding: 0px 5em 5em 5em !important;
+    /* background-color: yellow; */
+}

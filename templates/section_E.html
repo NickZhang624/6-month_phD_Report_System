@@ -1,0 +1,336 @@
+{% extends "layout.html" %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="../static/rating.css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='modal.css')}}">
+<!-- <script src="{{url_for('static', filename='modal.js')}}"></script> -->
+
+{% endblock %}
+
+{% block content %}
+<h2>Section E - Assessment by supervisors</h2>
+
+<table>
+    <tr VALIGN=TOP>
+        <td>
+            <form id='supervisor_feedback' action="/section_e/edit" method="POST">   
+                
+                {% if convenor_feedback[1] == editor_id %}
+                <table>
+                    <tr>
+                        <td><b>Convenor Name</b></td>
+                        <td><b>{{convenor_feedback[4]}} {{convenor_feedback[5]}}</b></td>
+                    </tr>
+                </table>
+
+                <div>
+                    <label>Highlight any area needing closer consideration:</label>
+                    <textarea name = 'convenor_comment'>{% if convenor_feedback[2] %}{{convenor_feedback[2]}}{% endif %}</textarea>
+                    <label>Rating</label>
+                    <input type='radio' id='convenor_rating' class='Green' name='convenor_rating' value="G" {% if convenor_feedback[3]=='G' %}checked{% endif %}>
+                    <input type='radio' id='convenor_rating' class='Orange' name='convenor_rating' value="O" {% if convenor_feedback[3]=='O' %}checked{% endif %}>
+                    <input type='radio' id='convenor_rating' class='Red' name='convenor_rating' value="R" {% if convenor_feedback[3]=='R' %}checked{% endif %}>
+                </div>
+                <input hidden name='convenor_uid' value='{{convenor_feedback[0]}}'>
+                {% endif %}
+
+                {% for sf in supervisor_feedback %}
+                {% if sf[1] == editor_id %}
+                <table>
+                    <tr>
+                        <td><b>Supervisor Role</b></td>
+                        <td>{{sf[11]}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Supervisor Name</b></td>
+                        <td>{{sf[9]}} {{sf[10]}}</td>
+                    </tr>
+                </table>
+
+                <div class='ratings'>
+                    <label>How do you rate the student's overall progress in the last 6 months</label><br>
+                    <input type='radio' id='{{sf[0]}}answer1' title='VeryUnsatisfactory' class='VeryUnsatisfactory' name='answer1' value="1" {% if sf[2] == 1 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer1' title='Unsatisfactory' class='Unsatisfactory' name='answer1' value="2" {% if sf[2] == 2 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer1' title='Neutral' class='Neutral' name='answer1' value="3" {% if sf[2] == 3 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer1' title='Good' class='Good' name='answer1' value="4" {% if sf[2] == 4 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer1' title='VeryGood' class='VeryGood' name='answer1' value="5" {% if sf[2] == 5 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer1' title='n/a' class='na' name='answer1' value="0" {% if sf[2] == 0 %}checked{% endif %}>
+                </div>
+                
+
+                <br>
+                <div class='ratings' >
+                    <label>How do you rate the student's overall progress in terms of the 3-year PhD track</label><br>
+                    <input type='radio' id='{{sf[0]}}answer2' title='VeryUnsatisfactory' class='VeryUnsatisfactory' name='answer2' value="1" {% if sf[3] == 1 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer2' title='Unsatisfactory' class='Unsatisfactory' name='answer2' value="2" {% if sf[3] == 2 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer2' title='Neutral' class='Neutral' name='answer2' value="3" {% if sf[3] == 3 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer2' title='Good' class='Good' name='answer2' value="4" {% if sf[3] == 4 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer2' title='VeryGood' class='VeryGood' name='answer2' value="5" {% if sf[3] == 5 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer2' title='n/a'class='na' name='answer2' value="0" {% if sf[3] == 0 %}checked{% endif %}>
+                </div>
+                <br>
+                <div class='ratings' >
+                    <label>How would you rate the quality of the student's academic work, e.g., research writing</label><br>
+                    <input type='radio' id='{{sf[0]}}answer3' title='VeryUnsatisfactory' class='VeryUnsatisfactory' name='answer3' value="1" {% if sf[4] == 1 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer3' title='Unsatisfactory' class='Unsatisfactory' name='answer3' value="2" {% if sf[4] == 2 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer3' title='Neutral' class='Neutral' name='answer3' value="3" {% if sf[4] == 3 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer3' title='Good' class='Good' name='answer3' value="4" {% if sf[4] == 4 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer3' title='VeryGood' class='VeryGood' name='answer3' value="5" {% if sf[4] == 5 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer3' title='n/a'class='na' name='answer3' value="0" {% if sf[4] == 0 %}checked{% endif %}>
+                </div>
+                <br>
+                <div class='ratings' >
+                    <label>Student's technical skill/s to complete the project</label><br>
+                    <input type='radio' id='{{sf[0]}}answer4' title='VeryUnsatisfactory' class='VeryUnsatisfactory' name='answer4' value="1" {% if sf[5] == 1 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer4' title='Unsatisfactory' class='Unsatisfactory' name='answer4' value="2" {% if sf[5] == 2 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer4' title='Neutral' class='Neutral' name='answer4' value="3" {% if sf[5] == 3 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer4' title='Good' class='Good' name='answer4' value="4" {% if sf[5] == 4 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer4' title='VeryGood' class='VeryGood' name='answer4' value="5" {% if sf[5] == 5 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer4' title='n/a' class='na' name='answer4' value="0" {% if sf[5] == 0 %}checked{% endif %}>
+                </div>
+                <br>
+                <div class='ratings' >
+                    <label>How would you rate the student's likelihood of achieving the next 6-months objectives</label><br>
+                    <input type='radio' id='{{sf[0]}}answer5' title='VeryUnsatisfactory' class='VeryUnsatisfactory' name='answer5' value="1" {% if sf[6] == 1 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer5' title='Unsatisfactory' class='Unsatisfactory' name='answer5' value="2" {% if sf[6] == 2 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer5' title='Neutral' class='Neutral' name='answer5' value="3" {% if sf[6] == 3 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer5' title='Good' class='Good' name='answer5' value="4" {% if sf[6] == 4 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer5' title='VeryGood' class='VeryGood' name='answer5' value="5" {% if sf[6] == 5 %}checked{% endif %}>
+                    <input type='radio' id='{{sf[0]}}answer5' title='n/a' class='na' name='answer5' value="0" {% if sf[6] == 0 %}checked{% endif %}>
+                </div>
+                <br>
+                <table>
+                    <tr>If a progress review meeting has taken place in the period converd by this report, have any recoomendations from that meeting been carried output?</tr>
+                    <tr>
+                        <div class="form-check">
+                            <input class="form-che  ck-input" type="checkbox" name='answer6' id="{{sf[0]}}answer6" value="1" {% if sf[7] == 1 %}checked{% endif %}>
+                            <label for="Yes">Yes</label>
+                            <input class="form-check-input" type="checkbox" name='answer6' id="{{sf[0]}}answer6" value="2" {% if sf[7] == 2 %}checked{% endif %}>
+                            <label for="No">No</label>
+                            <input class="form-check-input" type="checkbox" name='answer6' id="{{sf[0]}}answer6" value="0" {% if sf[7] == 0 %}checked{% endif %}>
+                            <label for="N/A">N/A</label>
+                        </div>
+                    </tr>
+                    <tr>Comments</tr>
+                    <tr><textarea id='{{sf[0]}}answer7' name='answer7'>{%if sf[8] %}{{sf[8]}}{%endif%}</textarea></tr>
+                </table>
+                <input hidden name='uid' value='{{sf[0]}}'>
+            {% endif %}
+            {% endfor %}
+                <input hidden name='reportid' value='{{report_id}}'>
+                {% if editor_role == 'Professor' or editor_role == 'Convenor' %}
+                <input type='submit' name = 'submit' value ='Finish'>
+                <input type='submit' name = 'submit' value ='Save & Exit'>
+
+                {% endif %}
+            </form>
+        </td>
+
+        <td>
+            <!-- display convenor feedback if viewer is admin (doesn't need to display this for supervisor or convenor) -->
+            {% if editor_role == 'Admin' %}
+            <b>Convenor Name:</b> {{convenor_feedback[4]}} {{convenor_feedback[5]}}
+            <br>
+            <label>Highlight any area needing closer consideration:</label>
+            <br>
+            <span>{% if convenor_feedback[2] %}{{convenor_feedback[2]}}{% endif %}</span>
+            <br>
+            <label>Rating</label>
+            <br>
+            <form>
+            <input type='radio' disabled id='convenor_rating' class='VeryUnsatisfactory' name='convenor_rating' value="G" {% if convenor_feedback[3]=='G' %}checked{% endif %}>
+            <input type='radio' disabled id='convenor_rating' class='Unsatisfactory' name='convenor_rating' value="O" {% if convenor_feedback[3]=='O' %}checked{% endif %}>
+            <input type='radio' disabled id='convenor_rating' class='Neutral' name='convenor_rating' value="R" {% if convenor_feedback[3]=='R' %}checked{% endif %}>
+            </form>
+            <button class='myBtn' onclick="document.getElementById('convenormodal').style.display='block'">Update</button>
+            <!-- Allow admin to edit convenor feedback -->
+            <div id='convenormodal' class='modal'>
+                <div class="modal-content">
+                    <span class="close" onclick="document.getElementById('convenormodal').style.display='none'">&times;</span>
+                    <form id='supervisor_feedback' action="/section_e/edit" method="POST">   
+                        <table>
+                            <tr>
+                                <td>Convenor Name</td>
+                                <td>{{convenor_feedback[4]}} {{convenor_feedback[5]}}</td>
+                            </tr>
+                        </table>
+
+                        <div>
+                            <label>Highlight any area needing closer consideration:</label>
+                            <textarea name = 'convenor_comment'>{% if convenor_feedback[2] %}{{convenor_feedback[2]}}{% endif %}</textarea>
+                            <label>Rating</label>
+                            <input type='radio' id='convenor_rating' class='VeryUnsatisfactory' name='convenor_rating' value="G" {% if convenor_feedback[3]=='G' %}checked{% endif %}>
+                            <input type='radio' id='convenor_rating' class='Unsatisfactory' name='convenor_rating' value="O" {% if convenor_feedback[3]=='O' %}checked{% endif %}>
+                            <input type='radio' id='convenor_rating' class='Neutral' name='convenor_rating' value="R" {% if convenor_feedback[3]=='R' %}checked{% endif %}>
+                        </div>
+                        <input hidden name='convenor_uid' value='{{convenor_feedback[0]}}'>
+                        <input hidden name='reportid' value='{{report_id}}'>
+                        <input type='submit' name='submit' value ='Confirm'>
+                    </form>                
+                </div>
+            </div>
+            
+            {% endif %}
+            <!-- display all supervisors' feedback for ADMIN or OTHER supervisors' feedback for a supervisor. ADMIN can also edit feedback -->
+            {% for sf in supervisor_feedback %}
+            {% if sf[1] != editor_id or editor_role == 'Admin' %}
+            <b>Supervisor Role:</b> {{sf[11]}} <br>
+            <b>Supervisor Name:</b> {{sf[9]}} {{sf[10]}}<br>
+            <form id='static_feedback'>
+                <b>How do you rate the student's overall progress in the last 6 months</b><br>
+                <input type='radio' id='{{sf[0]}}answer1' disabled class='VeryUnsatisfactory' name='answer1' value="1" {% if sf[2] == 1 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer1' disabled class='Unsatisfactory' name='answer1' value="2" {% if sf[2] == 2 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer1' disabled class='Neutral' name='answer1' value="3" {% if sf[2] == 3 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer1' disabled class='Good' name='answer1' value="4" {% if sf[2] == 4 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer1' disabled class='VeryGood' name='answer1' value="5" {% if sf[2] == 5 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer1' disabled class='na' name='answer1' value="0" {% if sf[2] == 0 %}checked{% endif %}>
+                <br>
+                <b>How do you rate the student's overall progress in terms of the 3-year PhD track</b><br>
+                <input type='radio' id='{{sf[0]}}answer2' disabled class='VeryUnsatisfactory' name='answer2' value="1" {% if sf[3] == 1 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer2' disabled class='Unsatisfactory' name='answer2' value="2" {% if sf[3] == 2 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer2' disabled class='Neutral' name='answer2' value="3" {% if sf[3] == 3 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer2' disabled class='Good' name='answer2' value="4" {% if sf[3] == 4 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer2' disabled class='VeryGood' name='answer2' value="5" {% if sf[3] == 5 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer2' disabled class='na' name='answer2' value="0" {% if sf[3] == 0 %}checked{% endif %}>    
+                <br>
+                <b>How would you rate the quality of the student's academic work, e.g., research writing</b><br>
+                <input type='radio' id='{{sf[0]}}answer3' disabled class='VeryUnsatisfactory' name='answer3' value="1" {% if sf[4] == 1 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer3' disabled class='Unsatisfactory' name='answer3' value="2" {% if sf[4] == 2 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer3' disabled class='Neutral' name='answer3' value="3" {% if sf[4] == 3 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer3' disabled class='Good' name='answer3' value="4" {% if sf[4] == 4 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer3' disabled class='VeryGood' name='answer3' value="5" {% if sf[4] == 5 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer3' disabled class='na' name='answer3' value="0" {% if sf[4] == 0 %}checked{% endif %}>    
+                <br>
+                <b>Student's technical skill/s to complete the project</b><br>
+                <input type='radio' id='{{sf[0]}}answer4' disabled class='VeryUnsatisfactory' name='answer4' value="1" {% if sf[5] == 1 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer4' disabled class='Unsatisfactory' name='answer4' value="2" {% if sf[5] == 2 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer4' disabled class='Neutral' name='answer4' value="3" {% if sf[5] == 3 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer4' disabled class='Good' name='answer4' value="4" {% if sf[5] == 4 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer4' disabled class='VeryGood' name='answer4' value="5" {% if sf[5] == 5 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer4' disabled class='na' name='answer4' value="0" {% if sf[5] == 0 %}checked{% endif %}>    
+                <br>
+                <b>How would you rate the student's likelihood of achieving the next 6-months objectives</b><br>
+                <input type='radio' id='{{sf[0]}}answer5' disabled class='VeryUnsatisfactory' name='answer5' value="1" {% if sf[6] == 1 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer5' disabled class='Unsatisfactory' name='answer5' value="2" {% if sf[6] == 2 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer5' disabled class='Neutral' name='answer5' value="3" {% if sf[6] == 3 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer5' disabled class='Good' name='answer5' value="4" {% if sf[6] == 4 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer5' disabled class='VeryGood' name='answer5' value="5" {% if sf[6] == 5 %}checked{% endif %}>
+                <input type='radio' id='{{sf[0]}}answer5' disabled class='na' name='answer5' value="0" {% if sf[6] == 0 %}checked{% endif %}>    
+                <br>If a progress review meeting has taken place in the period converd by this report, have any recoomendations from that meeting been carried output?
+                <br>{{sf[7]}}
+                <br>Comments
+                <br>{{sf[8]}}
+                <br><br><br>
+            </form>
+            <!-- Modal window for admin to edit supervisor feedback -->
+            {% if editor_role == 'Admin' %}
+            <button class='myBtn' onclick="document.getElementById('{{sf[0]}}modal').style.display='block'">Update</button>
+            <div id='{{sf[0]}}modal' class='modal'>
+                <div class="modal-content">
+                    <span class="close" onclick="document.getElementById('{{sf[0]}}modal').style.display='none'">&times;</span>
+                    <form id='supervisor_feedback' action="/section_e/edit" method="POST">   
+                        <table>
+                            <tr>
+                                <td><b>Supervisor Role</b></td>
+                                <td>{{sf[11]}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Supervisor Name</b></td>
+                                <td>{{sf[9]}} {{sf[10]}}</td>
+                            </tr>
+                        </table>
+        
+                        <div class='ratings'>
+                            <label>How do you rate the student's overall progress in the last 6 months</label><br>
+                            <input type='radio' id='{{sf[0]}}answer1' class='VeryUnsatisfactory' name='answer1' value="1" {% if sf[2] == 1 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer1' class='Unsatisfactory' name='answer1' value="2" {% if sf[2] == 2 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer1' class='Neutral' name='answer1' value="3" {% if sf[2] == 3 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer1' class='Good' name='answer1' value="4" {% if sf[2] == 4 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer1' class='VeryGood' name='answer1' value="5" {% if sf[2] == 5 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer1' class='na' name='answer1' value="0" {% if sf[2] == 0 %}checked{% endif %}>
+                            <input hidden id='{{sf[0]}}answer1' name='answer1' value="Null">
+                        </div>
+                        
+        
+                        <br>
+                        <div class='ratings' >
+                            <label>How do you rate the student's overall progress in terms of the 3-year PhD track</label>
+                            <input type='radio' id='{{sf[0]}}answer2' class='VeryUnsatisfactory' name='answer2' value="1" {% if sf[3] == 1 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer2' class='Unsatisfactory' name='answer2' value="2" {% if sf[3] == 2 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer2' class='Neutral' name='answer2' value="3" {% if sf[3] == 3 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer2' class='Good' name='answer2' value="4" {% if sf[3] == 4 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer2' class='VeryGood' name='answer2' value="5" {% if sf[3] == 5 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer2' class='na' name='answer2' value="0" {% if sf[3] == 0 %}checked{% endif %}>
+                            <input hidden id='{{sf[0]}}answer2' name='answer2' value="Null">
+                        </div>
+                        <br>
+                        <div class='ratings' >
+                            <label>How would you rate the quality of the student's academic work, e.g., research writing</label>
+                            <input type='radio' id='{{sf[0]}}answer3' class='VeryUnsatisfactory' name='answer3' value="1" {% if sf[4] == 1 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer3' class='Unsatisfactory' name='answer3' value="2" {% if sf[4] == 2 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer3' class='Neutral' name='answer3' value="3" {% if sf[4] == 3 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer3' class='Good' name='answer3' value="4" {% if sf[4] == 4 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer3' class='VeryGood' name='answer3' value="5" {% if sf[4] == 5 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer3' class='na' name='answer3' value="0" {% if sf[4] == 0 %}checked{% endif %}>
+                            <input hidden id='{{sf[0]}}answer3' name='answer3' value="Null">
+                        </div>
+                        <br>
+                        <div class='ratings' >
+                            <label>Student's technical skill/s to complete the project</label>
+                            <input type='radio' id='{{sf[0]}}answer4' class='VeryUnsatisfactory' name='answer4' value="1" {% if sf[5] == 1 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer4' class='Unsatisfactory' name='answer4' value="2" {% if sf[5] == 2 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer4' class='Neutral' name='answer4' value="3" {% if sf[5] == 3 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer4' class='Good' name='answer4' value="4" {% if sf[5] == 4 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer4' class='VeryGood' name='answer4' value="5" {% if sf[5] == 5 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer4' class='na' name='answer4' value="0" {% if sf[5] == 0 %}checked{% endif %}>
+                            <input hidden id='{{sf[0]}}answer4' name='answer4' value="Null">
+                        </div>
+                        <br>
+                        <div class='ratings' >
+                            <label>How would you rate the student's likelihood of achieving the next 6-months objectives</label>
+                            <input type='radio' id='{{sf[0]}}answer5' class='VeryUnsatisfactory' name='answer5' value="1" {% if sf[6] == 1 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer5' class='Unsatisfactory' name='answer5' value="2" {% if sf[6] == 2 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer5' class='Neutral' name='answer5' value="3" {% if sf[6] == 3 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer5' class='Good' name='answer5' value="4" {% if sf[6] == 4 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer5' class='VeryGood' name='answer5' value="5" {% if sf[6] == 5 %}checked{% endif %}>
+                            <input type='radio' id='{{sf[0]}}answer5' class='na' name='answer5' value="0" {% if sf[6] == 0 %}checked{% endif %}>
+                            <input hidden id='{{sf[0]}}answer5' name='answer5' value="Null">
+                        </div>
+                        <br>
+                        <table>
+                            <tr>If a progress review meeting has taken place in the period converd by this report, have any recoomendations from that meeting been carried output?</tr>
+                            <tr>
+                                <div class="form-check">
+                                    <input class="form-che  ck-input" type="checkbox" name='answer6' id="{{sf[0]}}answer6" value="1" {% if sf[7] == 1 %}checked{% endif %}>
+                                    <label for="Yes">Yes</label>
+                                    <input class="form-check-input" type="checkbox" name='answer6' id="{{sf[0]}}answer6" value="2" {% if sf[7] == 2 %}checked{% endif %}>
+                                    <label for="No">No</label>
+                                    <input class="form-check-input" type="checkbox" name='answer6' id="{{sf[0]}}answer6" value="0" {% if sf[7] == 0 %}checked{% endif %}>
+                                    <label for="N/A">N/A</label>
+                                    <input hidden id='{{sf[0]}}answer6' name='answer6' value="Null">
+                                </div>
+                            </tr>
+                            <tr>Comments</tr>
+                            <tr><textarea id='{{sf[0]}}answer7' name='answer7'>{%if sf[8] %}{{sf[8]}}{%else%} {%endif%}</textarea></tr>
+                        </table>
+                        <input hidden name='uid' value='{{sf[0]}}'>
+                        <input hidden name='reportid' value='{{report_id}}'>
+                        <input type='submit' name='submit' value ='Confirm'>
+                    </form>                
+                </div>
+            </div>
+            
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            <!-- Next, previous buttons for ADMIN -->
+            {% if editor_role == 'Admin' %}
+            <br>
+            <input type='submit' onclick="location.href='/section_d5/edit?report={{report_id}}';" value ='Previous'>
+            <input type='submit' onclick="location.href='/section_e/edit?report={{report_id}}';" value ='Save & Exit'>
+            <input type='submit' onclick="location.href='/section_f/edit?report={{report_id}}';" value ='Next'> 
+            {% endif %}
+        </td>
+    </tr>
+</table>
+{% endblock %}

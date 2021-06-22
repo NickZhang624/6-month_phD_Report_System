@@ -1,0 +1,226 @@
+{% extends 'layout.html' %}
+{% block title %}
+Lincoln University Postgraduate Reporting Portal
+{% endblock %}
+
+
+{% block content %}
+<section id="sec-B2">
+<div id="secB2">
+    <h2>SECTION B2 - Committees Approval
+      <button class="iInfo" onclick="sectionFInfo()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#FDDA2D" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+        </svg>
+      </button>
+  </h2> 
+  <div id="b2Info" style="display: none;">Discuss with your supervisor(s) whether or not your research has been or will need to be approved by any of the Lincoln University Committees listed below and select the appropriate status.
+  </div>
+</div>
+
+  <form id="studentSectionB2" action="/section_b2/edit" method="POST">
+    
+    <div class="row">        
+      <div class="form-group col-md-4 mt-4">
+        <h3>Topics</h3>
+      </div>
+
+      <div class="form-group col-md-2 mt-4">
+          <h3>Status</h3>
+      </div>
+    </div>
+
+    {% for x in select_result %}
+    <input type="hidden" name="uid" value="{{x[0]}}" />
+    
+    <div class="row"><!--Human-->        
+      <div class="form-group col-md-4 mt-4">
+        <label class="quest">Human Ethics Committee</label>
+      </div>
+
+      <div class="form-group col-md-2 mt-4">
+          <select class="dropdown-header" name='HumanEthicsApproval' id='HumanEthicsApproval' required>
+              <option value="{{x[19]}}" SELECTED >{{x[19]}}</option>
+              {% if x[19] == "Needed" %}
+              <option value="Approval Given" class="dropdown-item">Approval Given</option>
+              <option value="Not Needed" class="dropdown-item">Not Needed</option>
+              <option value="Not Applicable" class="dropdown-item">N/A</option>
+              {% elif x[19] == "Approval Given" %}
+              <option value="Needed" class="dropdown-item">Needed</option>
+              <option value="Not Needed" class="dropdown-item">Not Needed</option>
+              <option value="Not Applicable" class="dropdown-item">N/A</option>
+              {% elif x[19] == "Not Needed" %}
+              <option value="Approval Given" class="dropdown-item">Approval Given</option>
+              <option value="Needed" class="dropdown-item">Needed</option>
+              <option value="Not Applicable" class="dropdown-item">N/A</option>
+              {% else %}
+              <option value="Not Applicable" class="dropdown-item">N/A</option>
+              <option value="Not Needed" class="dropdown-item">Not Needed</option>
+              <option value="Needed" class="dropdown-item">Needed</option>
+              <option value="Approval Given" class="dropdown-item">Approval Given</option>
+              {% endif %}
+          </select>
+        </div>   
+    </div>   
+    
+    <div class="row"><!--Health-->        
+      <div class="form-group col-md-4 mt-4">
+        <label class="quest">Health and Safety Committee</label>
+      </div>
+
+      <div class="form-group col-md-2 mt-4">
+          <select class="dropdown-header" name='HealthSafetyApproval' id="HealthSafetyApproval" required>
+              <option value="{{x[20]}}" SELECTED >{{x[20]}}</option>
+              {% if x[20] == "Needed" %}
+              <option value="Approval Given" class="dropdown-item">Approval Given</option>
+              <option value="Not Needed" class="dropdown-item">Not Needed</option>
+              <option value="Not Applicable" class="dropdown-item">N/A</option>
+              {% elif x[20] == "Approval Given" %}
+              <option value="Needed" class="dropdown-item">Needed</option>
+              <option value="Not Needed" class="dropdown-item">Not Needed</option>
+              <option value="Not Applicable" class="dropdown-item">N/A</option>
+              {% elif x[20] == "Not Needed" %}
+              <option value="Approval Given" class="dropdown-item">Approval Given</option>
+              <option value="Needed" class="dropdown-item">Needed</option>
+              <option value="Not Applicable" class="dropdown-item">N/A</option>
+              {% else %}
+              <option value="Not Applicable" class="dropdown-item">N/A</option>
+              <option value="Not Needed" class="dropdown-item">Not Needed</option>
+              <option value="Needed" class="dropdown-item">Needed</option>
+              <option value="Approval Given" class="dropdown-item">Approval Given</option>
+              {% endif %}
+          </select>
+      </div>   
+    </div>
+
+    <div class="row"> <!--Animal-->        
+      <div class="form-group col-md-4 mt-4">
+        <label class="quest">Animal Ethics Committee</label>
+      </div>
+
+      <div class="form-group col-md-2 mt-4">
+        <select class="dropdown-header" name='AnimalEthicsApproval' id="AnimalEthicsApproval" required>
+            <option value="{{x[21]}}" SELECTED >{{x[21]}}</option>
+            {% if x[21] == "Needed" %}
+            <option value="Approval Given" class="dropdown-item">Approval Given</option>
+            <option value="Not Needed" class="dropdown-item">Not Needed</option>
+            <option value="Not Applicable" class="dropdown-item">N/A</option>
+            {% elif x[21] == "Approval Given" %}
+            <option value="Needed" class="dropdown-item">Needed</option>
+            <option value="Not Needed" class="dropdown-item">Not Needed</option>
+            <option value="Not Applicable" class="dropdown-item">N/A</option>
+            {% elif x[21] == "Not Needed" %}
+            <option value="Approval Given" class="dropdown-item">Approval Given</option>
+            <option value="Needed" class="dropdown-item">Needed</option>
+            <option value="Not Applicable" class="dropdown-item">N/A</option>
+            {% else %}
+            <option value="Not Applicable" class="dropdown-item">N/A</option>
+            <option value="Not Needed" class="dropdown-item">Not Needed</option>
+            <option value="Needed" class="dropdown-item">Needed</option>
+            <option value="Approval Given" class="dropdown-item">Approval Given</option>
+            {% endif %}
+        </select>
+      </div>   
+     </div>
+
+    <div class="row"><!--Institutional-->        
+      <div class="form-group col-md-4 mt-4">
+          <label class="quest"> Institutional Biological Safety Committee</label>
+      </div>
+
+      <div class="form-group col-md-2 mt-4">
+        <select class="dropdown-header" name='BiologicalSafetyApproval' id="BiologicalSafetyApproval" required>
+            <option value="{{x[22]}}" SELECTED >{{x[22]}}</option>
+            {% if x[22] == "Needed" %}
+            <option value="Approval Given" class="dropdown-item">Approval Given</option>
+            <option value="Not Needed" class="dropdown-item">Not Needed</option>
+            <option value="Not Applicable" class="dropdown-item">N/A</option>
+            {% elif x[22] == "Approval Given" %}
+            <option value="Needed" class="dropdown-item">Needed</option>
+            <option value="Not Needed" class="dropdown-item">Not Needed</option>
+            <option value="Not Applicable" class="dropdown-item">N/A</option>
+            {% elif x[22] == "Not Needed" %}
+            <option value="Approval Given" class="dropdown-item">Approval Given</option>
+            <option value="Needed" class="dropdown-item">Needed</option>
+            <option value="Not Applicable" class="dropdown-item">N/A</option>
+            {% else %}
+            <option value="Not Applicable" class="dropdown-item">N/A</option>
+            <option value="Not Needed" class="dropdown-item">Not Needed</option>
+            <option value="Needed" class="dropdown-item">Needed</option>
+            <option value="Approval Given" class="dropdown-item">Approval Given</option>
+            {% endif %}
+        </select>
+      </div>   
+    </div>
+      
+    <div class="row">   <!--Radiation-->    
+      <div class="form-group col-md-4 mt-4">
+        <label class="quest">Radiation Protection Officer</label>            
+      </div>
+
+      <div class="form-group col-md-2 mt-4">
+        <select class="dropdown-header" name='RadiationProtectionApproval' id="RadiationProtectionApproval" required>
+            <option value="{{x[23]}}" SELECTED >{{x[23]}}</option>
+            {% if x[23] == "Needed" %}
+            <option value="Approval Given" class="dropdown-item">Approval Given</option>
+            <option value="Not Needed" class="dropdown-item">Not Needed</option>
+            <option value="Not Applicable" class="dropdown-item">N/A</option>
+            {% elif x[23] == "Approval Given" %}
+            <option value="Needed" class="dropdown-item">Needed</option>
+            <option value="Not Needed" class="dropdown-item">Not Needed</option>
+            <option value="Not Applicable" class="dropdown-item">N/A</option>
+            {% elif x[23] == "Not Needed" %}
+            <option value="Approval Given" class="dropdown-item">Approval Given</option>
+            <option value="Needed" class="dropdown-item">Needed</option>
+            <option value="Not Applicable" class="dropdown-item">N/A</option>
+            {% else %}
+            <option value="Not Applicable" class="dropdown-item">N/A</option>
+            <option value="Not Needed" class="dropdown-item">Not Needed</option>
+            <option value="Needed" class="dropdown-item">Needed</option>
+            <option value="Approval Given" class="dropdown-item">Approval Given</option>
+            {% endif %}
+        </select>
+      </div>   
+    </div>
+
+      <input value = '{{report_id}}' name='reportid' hidden>
+      {% endfor %}
+      
+      <!-- buttons  -->
+      <div class="buttonArea">
+          <button type='submit' name='submit' value ='Previous' class="prevBtn" title="Previous">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            </svg>
+          </button>
+
+          <button type='submit' name='submit' value ='Save & Exit' class="snxBtn" title="Save & Exit">
+            <i class="glyphicon glyphicon-floppy-save"></i>
+          </button>
+
+          <button type='submit' name='submit' value ='Next' class="nxtBtn" title="Next">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          </button>
+      </div>
+
+  </form>
+
+</section>
+  
+<!-- i icon script -->
+<script>
+  function sectionFInfo() {
+      var x = document.getElementById("b2Info");
+      if (x.style.display === "none") {
+      x.style.display = "block";
+      } else {
+      x.style.display = "none";
+      }
+  }
+</script>
+
+{% endblock %}

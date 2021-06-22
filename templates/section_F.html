@@ -1,0 +1,128 @@
+{% extends 'layout.html' %}
+{% block title %}
+Lincoln University Postgraduate Reporting Portal
+{% endblock %}
+
+{% block content %}
+
+<section id="sec-F">
+  <div id="secF">
+    <h2>SECTION F - Student Assessment of Supervision, Technical and <br> Administrative Support 
+      
+      <button class="iInfo" onclick="sectionFInfo()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#FDDA2D" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+          </svg>
+      </button>
+    </h2>
+    
+    <div id="fInfo" style="display: none;">
+      <p>
+        This section is to be sent to your Faculty or Research Centre Postgraduate Committee Convenor.  It can be used for positive and/or negative comments.      
+      </p>
+
+      <p>
+        If you feel it is inappropriate that this form should go to your Faculty Postgraduate Convenor for whatever reason, then you may send it directly to the Postgraduate Director.
+
+        It is very important that you identify and write down any concerns you have about your supervisor(s), technical or administrative staff even when you feel this may be inappropriate (e.g., for cultural reasons). You should not feel powerless to identify your concerns.
+      </p>
+
+      <p>
+        Information on this form is confidential to the Faculty (or Research Centre) Postgraduate/ Research Chair (or the Postgraduate Director) and will not automatically be shown to your supervisors, technical or administrative staff.  However, we are not allowed by law to withhold these forms from people mentioned in them should they request them. For this reason, you may prefer to discuss the problem(s) instead of/before committing them to paper.  The best way to prevent small problems becoming big ones is to discuss the ‘Mutual Expectations Agreement’ document <a href="/section_b1/edit?report={{report_id}}">(see instructions)</a> with your supervisor(s) as well as any incipient supervisor problems.  If these routes fail, then the other options available to you are mentioned above.
+      </p> 
+      
+      <p>
+        The Faculty/Research Centre Postgraduate or Research Committee Chair (or the Postgraduate Director) will contact you to discuss any issues if you tick the box at the bottom of this form.  Through this discussion the most appropriate course of subsequent action will be discussed with you.  Unlike the form itself, the details of these oral discussions will remain confidential.
+      </p>
+    </div>
+  </div>
+    <form action="/section_f/edit" method="POST">
+
+      {% if abs_result %}
+      <div class="row">
+        <div class="form-group col-md-3 mt-4">
+          <h4>Comments</h4>
+        </div>
+        <div class="form-group col-md-4 mt-4">
+          <div class="input" data-reactid=".hbspt-forms-1.1:$7.$message">
+            <textarea id="message-808cf8a6-4352-4567-920a-2bd57d8b231f_6878" class="hs-input" name='comments' data-reactid=".hbspt-forms-1.1:$7.$message.0" style="margin: 0px; width: 429px; height: 134px;">{{abs_result[2]}}
+            </textarea>
+          </div>      
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-3 mt-4">
+          <h4>I would like to talk to</h4>
+        </div>     
+        <div class="form-group col-md-4 mt-4">
+          <select class="dropdown-header" id="talkinpersonuserid" name="talkinpersonuserid">
+            {% if abs_result[3] %}
+            <option class="dropdown-item" value='{{abs_result[3]}}'>{{abs_result[1]}} ({{abs_result[4]}})</option>
+            {% else %}
+            <option class="dropdown-item" value=''>I don't want to discuss in person</option>
+            {% endif %}
+            {% for i in talk_to_staff %}
+              <option class="dropdown-item" value='{{i[0]}}'>{{i[1]}} ({{i[2]}})</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      
+      {% else %}
+      <div class="row">
+        <div class="form-group col-md-3 mt-4">
+          <h4>Comments</h4>
+        </div>
+        
+        <div class="form-group col-md-6 mt-4">
+          <div class="input" data-reactid=".hbspt-forms-1.1:$7.$message">
+            <textarea id="message-808cf8a6-4352-4567-920a-2bd57d8b231f_6878" class="hs-input" name='comments' data-reactid=".hbspt-forms-1.1:$7.$message.0" style="margin: 0px; width: 700px; height: 300px;" placeholder="Please comment here..."></textarea>
+          </div>      
+        </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-3 mt-4">
+            <h4>I would like to talk to</h4>
+          </div>
+          <div class="form-group col-md-4 mt-4">
+            <select class="dropdown-header" id="talkinpersonuserid" name="talkinpersonuserid">
+              <option class="dropdown-item" value=''>I don't want to discuss in person</option>
+              {% for i in talk_to_staff %}
+              <option class="dropdown-item" value='{{i[0]}}'>{{i[1]}} ({{i[2]}})</option>
+              {% endfor %}
+            </select>
+          </div>
+      </div>
+      {% endif %}
+
+  <!-- buttons  -->
+  <div class="buttonArea">
+    <input hidden value = '{{report_id}}' name = 'reportid'>
+
+    <button type="submit" name ='submit' value="Previous" class="prevBtn" title="Previous">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#3147e8" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+    </button>
+    <button type="submit" name ='submit' value="Save & Exit" class="snxBtn" title="Save & Exit">
+        <i class="glyphicon glyphicon-floppy-save"></i>
+    </button>          
+    <button type="submit" name ='submit' value="Finish" class="sbmBtn" title="Submit">Submit
+    </button>
+  </div>
+  </form>
+
+</section>
+
+<script>
+  function sectionFInfo() {
+      var x = document.getElementById("fInfo");
+      if (x.style.display === "none") {
+      x.style.display = "block";
+      } else {
+      x.style.display = "none";
+      }
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <meta name="description" content="Show Password Toggle for Bootstrap 4">
+  <link rel="stylesheet" href="static/css/stylelogin.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+
+</head>
+
+<body class="text-center bg-lighth h-100 mt-1" id="loginbody">
+  <header class="text-xl-left h-100 mt-3" id="loginheader">
+    <h6 class="portaltitle text-right">Postgraduate Reporting Portal</h6>
+    <img src="/static/images/logowhite.jpg" alt="Lincoln University logo" class="whitelogo">
+  </header>
+  
+  <form class="text-left bg-lighth h-100 mt-1" action='/' method="POST">
+    <label for="username" class="text-left ml-0">Username</label>
+    <input type="username" name="username" id="username" class="form-control mb-3" required="" autofocus="" placeholder="Username">
+
+    <label for="password" class="text-left ml-0">Password</label>
+    <div class="input-group">
+    <input id="pass_log_id" type="password" name="password" class="form-control rounded-right input-password" spellcheck="false" autocorrect="off" autocapitalize="off" required="" placeholder="Password">
+    <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password"></span>
+    </div>
+
+    <button id= "btn" type="submit" value="Login">
+      Login
+    </button>
+
+  </form>
+
+  <div>
+    Demo User Accounts:<br>
+    <label>Supervisor: 1002 </label><br>
+    <label>Admin: 1015</label><br>
+    <label>Convenor: 1017</label><br>
+    <label>Student: 1021</label>
+    <br>
+    Use the code for both username and password
+  </div>
+
+<script src="/static/js/visibility.js"></script>
+
+
+</body>
+</html>

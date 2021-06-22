@@ -1,0 +1,258 @@
+{% extends 'layout.html' %}
+{% block title %}
+Lincoln University Postgraduate Reporting Portal
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="../static/rating.css">
+<script src="../static/modal.js"></script>
+{% endblock %}
+
+{% block content %}
+<!--https://codepen.io/wiseoldman/pen/RVRgyB-->
+
+
+<h2> SECTION C - Evaluation of Faculty (or Centre) performance
+    <button class="iInfo" onclick="sectionFInfo()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#FDDA2D" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+        </svg>
+    </button>
+</h2>
+<div id="cInfo" style="display: none;">Rate each of the following as they affect your study within the Faculty (or Centre). If you have any concerns about undertaking this evaluation then please go directly to section D and then complete section F.
+</div>
+
+<section id="sec-C1">
+<form id='evaluation' method="POST" action="/section_c/edit">
+    {% for r, o, rn, c, cn in data_pack %}
+    
+    
+<!--Go to next question unless it's the first question-->
+{% if rn != 'AccessPrincipalSupervisor' %}
+<!-- buttons  -->
+<div class="buttonAreaC">
+    <a href="javascript:history.back()" title="Previous Question">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-chevron-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+    </a>
+
+    <a href="#{{rn}}_container" title="Next Question">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+    </a>
+    <!-- <button type = "submit" name="Previous" value = "Previous" class="prevBtn" title="Previous">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+    </button>
+    <button type="submit" name="submit" value ="Save & Exit" class="snxBtn" title="Save & Exit">
+        <i class="glyphicon glyphicon-floppy-save"></i>
+    </button>          
+    <button  type="submit" name="submit" value ="Next" class="nxtBtn" title="Next">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+            <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+    </button> -->
+</div>
+
+{% endif %}
+
+<div class='ratings' id='{{rn}}_container' >
+    <!--Go back to previous question unless it's the first quesiton-->
+    <h3>{% if rn != 'AccessPrincipalSupervisor' %}</h3>
+
+    {% endif %}
+    <label for='{{rn}}'><h3>{{rn}}</h3></label><br>
+    {% if r == 'N/A' %}
+    <input type='radio' id='{{rn}}' class='VeryGood' name='{{rn}}' value="Very Good" title="Very Good">
+    <input type='radio' id='{{rn}}' class='Good' name='{{rn}}' value="Good" title="Good">
+    <input type='radio' id='{{rn}}' class='Neutral' name='{{rn}}' value="Neutral" title="Neutral">
+    <input type='radio' id='{{rn}}' class='Unsatisfactory' name='{{rn}}' value="Unsatisfactory" title="Unsatisfactory" >
+    <input type='radio' id='{{rn}}' class='VeryUnsatisfactory' name='{{rn}}' value="Very Unsatisfactory" title="Very Unsatisfactory">
+    <input type='radio' id='{{rn}}' class='na' name='{{rn}}' value="N/A" checked = 'checked' title="Not Applicable">
+
+    {% elif r == 'Good' %}
+    <input type='radio' id='{{rn}}' class='VeryGood' name='{{rn}}' value="Very Good" title="Very Good">
+    <input type='radio' id='{{rn}}' class='Good' name='{{rn}}' value="Good" checked = 'checked' title="Good">
+    <input type='radio' id='{{rn}}' class='Neutral' name='{{rn}}' value="Neutral" title="Neutral">
+    <input type='radio' id='{{rn}}' class='Unsatisfactory' name='{{rn}}' value="Unsatisfactory" title="Unsatisfactory">
+    <input type='radio' id='{{rn}}' class='VeryUnsatisfactory' name='{{rn}}' value="Very Unsatisfactory" title="Very Unsatisfactory">
+    <input type='radio' id='{{rn}}' class='na' name='{{rn}}' value="N/A" title="Not Applicable">
+
+    {% elif r == 'Neutral' %}
+    <input type='radio' id='{{rn}}' class='VeryGood' name='{{rn}}' value="Very Good" title="Very Good">
+    <input type='radio' id='{{rn}}' class='Good' name='{{rn}}' value="Good" title="Good">
+    <input type='radio' id='{{rn}}' class='Neutral' name='{{rn}}' value="Neutral" checked = 'checked' title="Neutral">
+    <input type='radio' id='{{rn}}' class='Unsatisfactory' name='{{rn}}' value="Unsatisfactory" title="Unsatisfactory">
+    <input type='radio' id='{{rn}}' class='VeryUnsatisfactory' name='{{rn}}' value="Very Unsatisfactory" title="Very Unsatisfactory">
+    <input type='radio' id='{{rn}}' class='na' name='{{rn}}' value="N/A" title="Not Applicable">
+
+    {% elif r == 'Unsatisfactory' %}
+    <input type='radio' id='{{rn}}' class='VeryGood' name='{{rn}}' value="Very Good" title="Very Good">
+    <input type='radio' id='{{rn}}' class='Good' name='{{rn}}' value="Good" title="Good">
+    <input type='radio' id='{{rn}}' class='Neutral' name='{{rn}}' value="Neutral" title="Neutral">
+    <input type='radio' id='{{rn}}' class='Unsatisfactory' name='{{rn}}' value="Unsatisfactory" checked = 'checked' title="Unsatisfactory">
+    <input type='radio' id='{{rn}}' class='VeryUnsatisfactory' name='{{rn}}' value="Very Unsatisfactory" title="Very Unsatisfactory">
+    <input type='radio' id='{{rn}}' class='na' name='{{rn}}' value="N/A" title="Not Applicable">
+
+    {% elif r == 'Very Unsatisfactory' %}
+    <input type='radio' id='{{rn}}' class='VeryGood' name='{{rn}}' value="Very Good" title="Very Good">
+    <input type='radio' id='{{rn}}' class='Good' name='{{rn}}' value="Good" title="Good">
+    <input type='radio' id='{{rn}}' class='Neutral' name='{{rn}}' value="Neutral" title="Neutral">
+    <input type='radio' id='{{rn}}' class='Unsatisfactory' name='{{rn}}' value="Unsatisfactory" title="Unsatisfactory">
+    <input type='radio' id='{{rn}}' class='VeryUnsatisfactory' name='{{rn}}' value="Very Unsatisfactory" checked = 'checked' title="Very Unsatisfactory">
+    <input type='radio' id='{{rn}}' class='na' name='{{rn}}' value="N/A" title="Not Applicable">
+
+    {% elif r == 'Very Good' %}
+    <input type='radio' id='{{rn}}' class='VeryGood' name='{{rn}}' value="Very Good" checked = 'checked' title="Very Good">
+    <input type='radio' id='{{rn}}' class='Good' name='{{rn}}' value="Good" title="Good">
+    <input type='radio' id='{{rn}}' class='Neutral' name='{{rn}}' value="Neutral"title="Neutral">
+    <input type='radio' id='{{rn}}' class='Unsatisfactory' name='{{rn}}' value="Unsatisfactory" title="Unsatisfactory">
+    <input type='radio' id='{{rn}}' class='VeryUnsatisfactory' name='{{rn}}' value="Very Unsatisfactory" title="Very Unsatisfactory">
+    <input type='radio' id='{{rn}}' class='na' name='{{rn}}' value="N/A" title="Not Applicable">
+
+    {% else %}
+    <input type='radio' id='{{rn}}' class='VeryGood' name='{{rn}}' value="Very Good" title="Very Good">
+    <input type='radio' id='{{rn}}' class='Good' name='{{rn}}' value="Good" title="Good">
+    <input type='radio' id='{{rn}}' class='Neutral' name='{{rn}}' value="Neutral" title="Neutral">
+    <input type='radio' id='{{rn}}' class='Unsatisfactory' name='{{rn}}' value="Unsatisfactory" title="Unsatisfactory">
+    <input type='radio' id='{{rn}}' class='VeryUnsatisfactory' name='{{rn}}' value="Very Unsatisfactory" title="Very Unsatisfactory">
+    <input type='radio' id='{{rn}}' class='na' name='{{rn}}' value="N/A" title="Not Applicable">
+
+    {% endif %}
+
+    <div class="row">
+        <div class="form-group col-md-6 mt-4">
+            <div class="input" data-reactid=".hbspt-forms-1.1:$7.$message" id="faceRst">
+                <span id="{{rn}}result">{{r}}</span>
+            </div>      
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6 mt-4">
+            <div class="input" data-reactid=".hbspt-forms-1.1:$7.$message" id="textArea">
+            <textarea id="message-808cf8a6-4352-4567-920a-2bd57d8b231f_6878" class="hs-input" name='{{cn}}' data-reactid=".hbspt-forms-1.1:$7.$message.0" style="margin: 0px; width: 429px; height: 150px;">{{c}}
+            </textarea>
+            </div>      
+        </div>
+    </div>
+</div>
+
+
+<script id="{{rn}}js">
+    // Very simple JS for updating the text when a radio button is clicked
+    //const values must be unique for each question
+    const {{rn}}INPUTS = document.querySelectorAll('#{{rn}}');
+    const {{rn}}updateValue = e => document.querySelector('#{{rn}}result').innerHTML = e.target.value;
+
+    {{rn}}INPUTS.forEach(el => el.addEventListener('click', e => {{rn}}updateValue(e)));
+</script>
+
+<!-- </div> -->
+{% endfor %}
+
+
+<!-- buttons  -->
+<!-- <div class="buttonAreaC">
+    <a href="javascript:history.back()" title="Previous Question">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-chevron-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+    </a>
+    Go to
+    <a href="#{{rn}}_container" title="Next Question">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+    </a>
+    <br>
+  </div>   -->
+
+</section>
+
+<section id="sec-C2">
+    <div id='other_question_container'>
+        <div class="row">
+            <div class="form-group col-md-7 mt-4">
+                <label for='supervisormeetingfreq'>How frequently do you have a meeting with your supervisor?</label>
+            </div>
+            <div class="form-group col-md-2 mt-4">
+                <select class="dropdown-header" name="supervisormeetingfreq">
+                    <option  class="dropdown-item" value='{{meeting_freq}}'>{{meeting_freq}}</option>
+                    {% for x in meeting_freq_options %}
+                    <option  class="dropdown-item" value='{{x}}'>{{x}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-7 mt-4">    
+                <label for='feedbackwaitperiod'>What is the usual period for receiving feedback from your supervisor on submitted materials?</label>
+            </div>
+            <div class="form-group col-md-2 mt-4">
+                <select class="dropdown-header" name="feedbackwaitperiod">
+                    <option class="dropdown-item" value='{{waitperiod}}'>{{waitperiod}}</option>
+                    {% for x in waitperiod_options %}
+                    <option  class="dropdown-item" value='{{x}}'>{{x}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-7 mt-4">
+                <label for='feedbackmethod'>How do you receive your feedback from your supervisor?</label>
+            </div>
+            <div class="form-group col-md-2 mt-4">
+                <select class="dropdown-header" name="feedbackmethod">
+                    <option  class="dropdown-item" value='{{feedback_method}}'>{{feedback_method}}</option>
+                    {% for x in feedback_options %}
+                    <option  class="dropdown-item" value='{{x}}'>{{x}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        
+        <div class="buttonArea">
+            <input hidden name = 'reportid' value="{{report_id}}">
+            <input hidden name = 'questionid' value="{{question_id}}">
+            <button type= "submit" name="Previous" value = "Previous" class="prevBtn" title="Previous">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                </svg>
+            </button>
+            <button type="submit" name="submit" value ="Save & Exit" class="snxBtn" title="Save & Exit">
+                <i class="glyphicon glyphicon-floppy-save"></i>
+            </button>          
+            <button  type="submit" name="submit" value ="Next" class="nxtBtn" title="Next">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </button>
+        </div> 
+
+    </div>
+</form>
+</section>
+
+
+
+<!-- i icon script -->
+<script>
+    function sectionFInfo() {
+        var x = document.getElementById("cInfo");
+        if (x.style.display === "none") {
+        x.style.display = "block";
+        } else {
+        x.style.display = "none";
+        }
+    }
+  </script>
+{% endblock %}

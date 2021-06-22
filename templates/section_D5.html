@@ -1,0 +1,109 @@
+{% extends 'layout.html' %}
+{% block title %}
+Lincoln University Postgraduate Reporting Portal
+{% endblock %}
+
+
+{% block content %}
+
+<section id="sec-D5">
+<!-- <h2>Progress and Achievements Assessment - by student and supervisors</h2> -->
+<h2>SECTION D- Expected Research Expenditure for the next Six Months</h2>
+
+
+
+
+
+<form action="/section_d5/edit" method="POST">                            
+    <input hidden name = 'reportid' value="{{report_id}}">
+    <table class="table table-borderless">
+        <tr>
+            
+            <td></td>
+            <td><label for=""><h3>Item</h3></label></td>
+            <td><label for=""><h3>Amount</h3></label></td>
+            <td><label for=""><h3>Notes</h3></label></td>            
+            <td></td>
+        </tr>
+        {% for i, c in D5data %}
+        <tr>
+            <td>{{loop.index}}.</td>
+            <td>
+                <div class="input" data-reactid=".hbspt-forms-1.1:$7.$message">
+                    <textarea name="title[]" {% if c[0] %}value="{{c[0]}}"{% endif %} id="message-808cf8a6-4352-4567-920a-2bd57d8b231f_6878" class="hs-input" data-reactid=".hbspt-forms-1.1:$7.$message.0" style="margin: 0px; width: 450px; height: 35px;">{% if c[0] %}{{c[0]}}{% endif %}</textarea>
+                  </div>
+            </td>
+            <td><input class="form-control" name="amount[]" type="text" placeholder="$" {% if c[1] %}value="{{c[1]}}"{% endif %}></td>
+            <td>
+                <div class="input" data-reactid=".hbspt-forms-1.1:$7.$message">
+                    <textarea name="comment[]" id="message-808cf8a6-4352-4567-920a-2bd57d8b231f_6878" class="hs-input" data-reactid=".hbspt-forms-1.1:$7.$message.0" style="margin: 0px; width: 200px; height: 35px;">{% if c[2] %}{{c[2]}}{% endif %}</textarea>
+                  </div>
+            </td>
+            <input hidden name = "id[]" value="{{i[0]}}">
+            <td>
+              <button value="{{i[0]}}" name="submit" type="submit" class="delBtnD5" title="Delete Item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                </svg>  
+              </button>
+            
+        </tr>              
+        {% endfor %}
+
+        <tr>
+            <td></td>            
+            <td></td>
+            <td><label for="">Total: </label> $ {{total}}</td>
+        </tr>
+
+        <!-- add item button -->
+        <tr>
+            <td>
+                <button value="add"name="submit" type="submit" class="addBtn" title="Add Item">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#3147e8" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                  <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+                  </svg>
+                </button>
+            </td>
+        </tr>
+    </table>
+    
+    
+    <!-- buttons  -->
+    <div class="buttonArea">
+        <input hidden name = 'reportid' value="{{report_id}}">    
+        
+        <button type='submit' name='submit' value ='Previous' class="prevBtn" title="Previous">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+              <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+          </svg>
+        </button>
+                
+        <button type='submit' name='submit' value ='Save & Exit' class="snxBtn" title="Save & Exit">
+          <i class="glyphicon glyphicon-floppy-save"></i>
+        </button>
+  
+        <button type='submit' name='submit' value ='Next' class="nxtBtn" title="Next">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+              <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+        </button>      
+      </div>
+
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class=flashes>
+          {% for message in messages %}
+            <span>{{ message }}<span>
+          {% endfor %}
+          </ul>
+        {% endif %}
+        {% endwith %}
+
+    </form>
+  </section>
+{% endblock %}

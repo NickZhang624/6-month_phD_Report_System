@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+{% block title %}
+Lincoln University Postgraduate Reporting Portal
+{% endblock %}
+
+
+{% block content %}
+<!-- 0th.thesistitle \
+,1re.reportid\
+,2re.reportorder\
+,3re.duedate\
+,4re.reportstatus\
+,5CONCAT(s.firstname, ' ', s.lastname) AS student_name\
+,6s.userid AS studentuserid\
+,7abs.supervisoruserid\
+,8CASE WHEN re.sectionabcdsubmissiondate IS NULL THEN 'Unavailable'\
+WHEN re.sectionabcdsubmissiondate IS NOT NULL AND abs.submissiondate IS NULL THEN 'Pending'\
+WHEN re.sectionabcdsubmissiondate IS NOT NULL AND abs.submissiondate IS NOT NULL \
+AND re.reportstatus LIKE 'Incomplete' THEN 'Complete'\
+WHEN re.reportstatus = 'Complete' THEN 'Approved'\
+ELSE 'N/A'\
+END AS report_status\
+,9re.sectionabcdsubmissiondate\
+,10abs.submissiondate\ -->
+
+
+{% if panel_view == 'pending' %}
+<div>
+  <h3>Pending Reports</h3>
+  <table class="table table-hover"> 
+      <tr>      
+        <td>Student Name</td>
+        <td>Thesis Title</td>      
+        <td>Due Date</td>      
+        <td>Status</td>         
+      </tr>
+      <tbody>
+        {% for r in all_reports %}
+        {% if r[8] == 'Pending' %}
+        <tr onclick="window.location='/section_e/edit?report={{r[1]}}&editor=supervisor';" style="cursor:pointer">
+          <td>{{r[5]}}</td>
+          <td>{{r[0]}}</td>
+          <td>{{r[3]}}</td>
+          <td>{{r[8]}}</td>
+        </tr>
+        {% elif r[8] == 'Unavailable' %}
+        <tr onclick="window.alert('You cannot edit this report because the student has not submitted yet');">
+          <td>{{r[5]}}</td>
+          <td>{{r[0]}}</td>
+          <td>{{r[3]}}</td>
+          <td>{{r[8]}}</td>
+        </tr>
+        {% endif %}
+      {% endfor %}
+      </tbody>
+      </table>
+</div>
+
+{% elif panel_view == 'historic' %}
+<div>
+  <h3>Completed Reports</h3>
+  <table class="table table-hover"> 
+      <tr>      
+        <td>Student Name</td>
+        <td>Thesis Title</td>      
+        <td>Due Date</td>      
+        <td>Status</td>         
+      </tr>
+      <tbody>
+        {% for r in all_reports %}
+        {% if r[8] == 'Approved' %}
+        <tr onclick="window.location='/supervisor/view?reportID={{r[1]}}';" style="cursor:pointer">
+          <td>{{r[5]}}</td>
+          <td>{{r[0]}}</td>
+          <td>{{r[3]}}</td>
+          <td>{{r[8]}}</td>
+        </tr>
+        {% elif r[8] == 'Complete' %}
+        <tr onclick="window.location='/supervisor/view?reportID={{r[1]}}';" style="cursor:pointer"">
+          <td>{{r[5]}}</td>
+          <td>{{r[0]}}</td>
+          <td>{{r[3]}}</td>
+          <td>{{r[8]}}</td>
+        </tr>
+        {% endif %}
+      {% endfor %}
+      </tbody>
+      </table>
+</div>
+{% endif %}
+{% endblock %}
+
+

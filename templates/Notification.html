@@ -1,0 +1,118 @@
+{% extends 'layout.html' %}
+{% block title %}
+Lincoln University Postgraduate Reporting Portal
+{% endblock %}
+
+
+{% block content %}
+
+<section id="noti">
+
+    <h3> Sending Notification </h3>
+    <form action="/notification" method="POST">
+        
+        <div class="row">        
+            <div class="form-group col-md-2 mt-4">
+                <label for="recipient" class="formlabel">Recipient:</label>
+            </div>
+                
+            <input type="text" id="reportid" name="reportid" 
+                value="{{reportid}}" style="display: none;" />
+                
+            <div class="form-group col-md-9 mt-4">
+                <input class="form-control inputNoti" type="text" id="recipient" name="recipient" {% if student_email_list %} value="{{student_email_list}}" {% endif %} readonly/>    
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-2">
+            </div>
+        
+            <div class="form-group col-md-9">
+                <input class="form-control inputNoti" type="text" id="recipient1" name="recipient1" {% if supervisor_email_list %} value="{{supervisor_email_list}}" {% endif %} readonly/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-2">
+            </div>
+        
+            <div class="form-group col-md-9">
+                <input class="form-control inputNoti" type="text" id="recipient2" name="recipient2" {% if convenor_email %} value="{{convenor_email}}" {% endif %} readonly/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-2 mt-5">
+                <label for="subject">Subject:</label>
+            </div>
+        
+            <div class="form-group col-md-9 mt-5">
+                <input class="titleNoti" type="text" id="subject" name="subject" value="PhD Report Update - {{thesis[0][0]}}"/>
+            </div>
+        </div>        
+
+        <div class="row">
+            <div class="form-group col-md-2 mt-5">
+                <label for="content">Content:</label>
+            </div>                    
+
+            <div class="form-group col-md-9">        
+        {% if student_email_list == null or supervisor_email_list == null or convenor_email == null %}
+                <div class="input" data-reactid=".hbspt-forms-1.1:$7.$message">
+                    <textarea type="text" name="content" id="content message-808cf8a6-4352-4567-920a-2bd57d8b231f_6878" class="hs-input" name='comments' data-reactid=".hbspt-forms-1.1:$7.$message.0" style="margin: 0px; width: 700px; height: 500px;">
+                        Hello, *****
+
+                        Please kindly find this notification below:
+
+                        You have the task need to complete regarding a PhD report - {{thesis[0][0]}}
+
+                        Please submit on time accordingly.
+
+
+
+
+
+
+
+                        Faculty Postgraduate Administrator
+                        Douglas Broughton
+
+                        Lincoln University
+                    </textarea>
+                </div>
+            </div>
+        </div>
+
+
+        {% else %}
+        <div class="row">
+            <div class="form-group col-md-9 mt-4">
+                <div class="input" data-reactid=".hbspt-forms-1.1:$7.$message">
+                    <textarea type="text" name="content" id="content message-808cf8a6-4352-4567-920a-2bd57d8b231f_6878" class="hs-input" name='comments' data-reactid=".hbspt-forms-1.1:$7.$message.0" style="margin: 0px; width: 700px; height: 500px;">
+                        Hello, *****
+
+                        Congratulations, We have approved your PhD report - {{thesis[0][0]}}
+
+
+
+
+
+
+
+                        Faculty Postgraduate Administrator
+                        Douglas Broughton
+
+                        Lincoln University
+                    </textarea>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="buttonArea">
+            <button class="sbmBtn col-md-4" >Send</button>
+        </div>
+    </form>
+</section>
+
+{% endblock %}

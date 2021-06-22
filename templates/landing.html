@@ -1,0 +1,274 @@
+{% extends 'layout.html' %}
+{% block title %}
+Lincoln University Postgraduate Reporting Portal
+{% endblock %}
+
+
+{% block content %}
+<section class="home" id="home">
+<form action="/student/landing" method="POST">
+
+<div class="landingblock">
+  <div class="lleft">
+    <table class="table table-borderless" id="currtable">
+      <h3>Report in progress</h3>
+      <thead>
+      <tr>
+          <th><h4>Report</h4></th>
+          <th><h4>Due Date</h4></th>
+          <th><h4>Status</h4></th>                            
+      </tr>
+    </thead>
+    <tbody>
+      {% for x in select_result %}  
+      <tr>
+        <td>
+            {% if x[5] is none and x[3] == "Incomplete" %}
+            {% if x[2] == 1 %}
+            <a>1st 6-Month</a>
+            {% elif x[2] == 2 %}
+            <a>2nd 6-Month</a>
+            {% elif x[2] == 3 %}
+            <a>3rd 6-Month</a>
+            {% elif x[2] == 4 %}
+            <a>4th 6-Month</a>
+            {% elif x[2] == 5 %}
+            <a>5th 6-Month</a>
+            {% else %}
+            <a>6th 6-Month</a>
+            {% endif %}
+            <ul>
+              <li><a href="/section_a/edit?report={{x[0]}}">section A</a></li>
+              <li><a href="/section_b1/edit?report={{x[0]}}">section B</a></li>
+              <li><a href="/section_c/edit?report={{x[0]}}">section C</a></li>
+              <li><a href="/section_d1/edit?report={{x[0]}}">section D</a></li>
+              <li><a href="/section_f/edit?report={{x[0]}}">section F</a></li>
+              </ul>            
+            {% endif %}
+        </td>
+        <td>
+            {% if x[5] is none and x[3] == "Incomplete" %}
+            <a>{{x[7]}}</a> 
+            {% endif %}  
+        </td>      
+        <td>
+            {% if x[5] is none and x[3] == "Incomplete" %}
+            <ul id="statusreport">
+                <li><a>In Progress</a></li>
+            </ul>
+            {% endif %} 
+        </td>  
+      </tr>
+      {% endfor %} 
+
+    </tbody>                    
+    </table>
+  </div>
+
+  <div id="milestoneroad">
+    <img src="../static/images/Milestone.png" alt="Milestone" class="milstoneimg" width="500">
+  </div>
+</div>
+<br><br>
+
+<div>
+  <!-- <a id="prevReports" onclick="functionprevreports()">View previous reports</a> -->
+  <table class="table table-borderless" id="prevtable">  
+    <h3 id="h3prev">All Reports</h3>
+    <thead>
+      <tr>
+          <th><h4>Report</h4></th>
+          <th><h4>Due Date</h4></th>
+          <th><h4>Status</h4></th>                            
+      </tr>
+    </thead>
+    <tbody>
+      {% if select_result %}
+      <tr>   
+        <td>
+          <a>1st 6-Month</a>
+        </td>    
+        <td>
+          {% if select_result[0] %}
+            {% if select_result[0][2] == 1 %}
+            <a>{{select_result[0][7]}}</a>
+            {% endif %}
+          {% else %}
+            <a>DD-MM-YYYY</a>
+          {% endif %}                                   
+        </td>      
+        <td>
+          {% if select_result[0] %}
+            {% if select_result[0][3] == 'Complete' %}
+            <a href="/student/view?student={{select_result[0][9]}}&reportID={{select_result[0][0]}}" style="font-weight: bold;">Approved -></a>
+            {% elif select_result[0][5] is not none %}
+            <a>Completed</a>
+            {% elif select_result[0][4] is not none %}
+            <a>In Progress</a>
+            {% else %}
+            <a>Not Started</a>
+            {% endif %} 
+          {% else %}
+            <a>Not Started</a>
+          {% endif %} 
+          </td>        
+      </tr>
+      
+      <tr>   
+        <td>
+          <a>2nd 6-Month</a>
+        </td>    
+        <td>
+          {% if select_result[1] %}
+          {% if select_result[1][2] == 2 %}
+          <a>{{select_result[1][7]}}</a>
+          {% endif %}
+        {% else %}
+          <a>DD-MM-YYYY</a>
+        {% endif %}                                   
+        </td>      
+        <td>
+          {% if select_result[1] %}
+          {% if select_result[1][3] == 'Complete' %}
+          <a href="/student/view?student={{select_result[1][9]}}&reportID={{select_result[1][0]}}" style="font-weight: bold;">Approved -></a>
+          {% elif select_result[1][5] is not none %}
+          <a>Completed</a>
+          {% elif select_result[1][4] is not none %}
+          <a>In Progress</a>
+          {% else %}
+          <a>Not Started</a>
+          {% endif %} 
+        {% else %}
+          <a>Not Started</a>
+        {% endif %} 
+        </td>        
+      </tr> 
+
+      <tr>   
+        <td>
+            <a>3rd 6-Month</a>
+        </td>    
+        <td>
+          {% if select_result[2] %}
+          {% if select_result[2][2] == 3 %}
+          <a>{{select_result[2][7]}}</a>
+          {% endif %}
+        {% else %}
+          <a>DD-MM-YYYY</a>
+        {% endif %}                                   
+        </td>      
+        <td>
+          {% if select_result[2] %}
+          {% if select_result[2][3] == 'Complete' %}
+          <a href="/student/view?student={{select_result[2][9]}}&reportID={{select_result[2][0]}}" style="font-weight: bold;">Approved -></a>
+          {% elif select_result[2][5] is not none %}
+          <a>Completed</a>
+          {% elif select_result[2][4] is not none %}
+          <a>In Progress</a>
+          {% else %}
+          <a>Not Started</a>
+          {% endif %} 
+        {% else %}
+          <a>Not Started</a>
+        {% endif %} 
+        </td>        
+      </tr> 
+
+      <tr>   
+        <td>
+            <a>4th 6-Month</a>
+        </td>    
+        <td>
+          {% if select_result[3] %}
+          {% if select_result[3][2] == 4 %}
+          <a>{{select_result[3][7]}}</a>
+          {% endif %}
+        {% else %}
+          <a>DD-MM-YYYY</a>
+        {% endif %}                                   
+        </td>      
+        <td>
+          {% if select_result[3] %}
+          {% if select_result[3][3] == 'Complete' %}
+          <a href="/student/view?student={{select_result[3][9]}}&reportID={{select_result[3][0]}}" style="font-weight: bold;">Approved -></a>
+          {% elif select_result[3][5] is not none %}
+          <a>Completed</a>
+          {% elif select_result[3][4] is not none %}
+          <a>In Progress</a>
+          {% else %}
+          <a>Not Started</a>
+          {% endif %} 
+        {% else %}
+          <a>Not Started</a>
+        {% endif %} 
+        </td>        
+      </tr> 
+
+      <tr>   
+        <td>
+            <a>5th 6-Month</a>
+        </td>    
+        <td>
+          {% if select_result[4] %}
+          {% if select_result[4][2] == 5 %}
+          <a>{{select_result[4][7]}}</a>
+          {% endif %}
+        {% else %}
+          <a>DD-MM-YYYY</a>
+        {% endif %}                                   
+        </td>      
+        <td>
+          {% if select_result[4] %}
+          {% if select_result[4][3] == 'Complete' %}
+          <a href="/student/view?student={{select_result[4][9]}}&reportID={{select_result[4][0]}}" style="font-weight: bold;">Approved -></a>
+          {% elif select_result[4][5] is not none %}
+          <a>Completed</a>
+          {% elif select_result[4][4] is not none %}
+          <a>In Progress</a>
+          {% else %}
+          <a>Not Started</a>
+          {% endif %} 
+        {% else %}
+          <a>Not Started</a>
+        {% endif %} 
+        </td>        
+      </tr> 
+
+      <tr>   
+        <td>
+            <a>6th 6-Month</a>
+        </td>    
+        <td>
+          {% if select_result[5] %}
+          {% if select_result[5][2] == 6 %}
+          <a>{{select_result[5][7]}}</a>
+          {% endif %}
+        {% else %}
+          <a>DD-MM-YYYY</a>
+        {% endif %}                                   
+        </td>      
+        <td>     
+          {% if select_result[5] %}
+          {% if select_result[5][3] == 'Complete' %}
+          <a href="/student/view?student={{select_result[5][9]}}&reportID={{select_result[5][0]}}" style="font-weight: bold;">Approved -></a>
+          {% elif select_result[5][5] is not none %}
+          <a>Completed</a>
+          {% elif select_result[5][4] is not none %}
+          <a>In Progress</a>
+          {% else %}
+          <a>Not Started</a>
+          {% endif %} 
+        {% else %}
+          <a>Not Started</a>
+        {% endif %} 
+        </td>        
+      </tr> 
+    {% endif %}                 
+    </tbody>
+  </table> 
+</div>
+
+</form>
+</section>
+
+  {% endblock %}

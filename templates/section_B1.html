@@ -1,0 +1,397 @@
+{% extends 'layout.html' %}
+{% block title %}
+Lincoln University Postgraduate Reporting Portal
+{% endblock %}
+
+{% block content %}
+<section id="sec-B1">
+<div id="secB1">
+
+    <h2> SECTION B- Milestones 
+        <button class="iInfo" onclick="sectionFInfo()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#FDDA2D" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+        </button>
+    </h2> 
+    <div id="b1Info" style="display: none;"> Please select status where applicable and give date of completion where appropriate.
+    </div>
+</div>
+
+    <form id="studentSectionB1" action="/section_b1/edit" method="POST">
+      
+    <div class="row"> <!--Titles-->       
+        <div class="form-group col-md-5 mt-4">
+            <h3>Topics</h3>
+        </div>
+
+        <div class="form-group col-md-2 mt-4">
+            <h3>Status</h3>
+        </div>
+
+        <div class="form-group col-md-3 mt-4">
+            <h3>Completion Date</h3>
+        </div>
+    </div>              
+      
+          {% for x in select_result %}
+        
+          <input type="hidden" name="uid" value="{{x[0]}}" />
+          <input type="hidden" name="reportid" value="{{x[1]}}" />
+          <input type="hidden" name="questionid" value="{{x[2]}}" />
+          
+    <div class="row"><!--Induction-->
+        <div class="form-group col-md-5 mt-4">
+            <label class="quest">Induction Programme (Compulsory) *</label>
+        </div>
+
+        <div class="form-group col-md-2 mt-4">
+            <select class="dropdown-header" name="InductionProgramme" id="InductionProgramme" onchange="datehide0(this)">
+                                        
+                {% if x[3] == "N" %}
+                <option value="N" class="input-group-addon">Incompleted</option>
+                <option value="Y" class="dropdown-item">Completed</option>
+                <option value="null" class="dropdown-item">N/A</option>
+                {% elif x[3] == 'Y' %}
+                <option value="Y" class="dropdown-item">Completed</option>
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="null" class="dropdown-item">N/A</option>
+                {% else %}
+                <option value="null" class="dropdown-item">N/A</option>
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="Y" class="dropdown-item">Completed</option>
+                {% endif %}                       
+                </select>
+        </div>
+
+        <div class="form-group col-md-2 mt-4">
+            {% if x[3] == "Y" %}
+            <input class="form-control" value="{{x[4]}}" name = "InductionProgrammeDate" id='InductionProgrammeDate' type="date">
+            {% else %}
+            <input class="form-control" style="display: none;" value="{{x[4]}}" name = "InductionProgrammeDate" id='InductionProgrammeDate' type="date">
+            {% endif %}
+        </div>          
+    </div>
+
+    <div class="row"> <!--Mutual Agreement-->
+        <div class="form-group col-md-5 mt-4">
+            <label class="quest">Mutual Expectations Agreement (Compulsory) *</label>
+        </div>
+    
+        <div class="form-group col-md-2 mt-4">
+            <select class="dropdown-header" name="MutualExpectationAgreement" id="MutualExpectationAgreement" onchange="datehide1(this)">
+                {% if x[5] == 'Y' %}
+                <option value="Y" class="dropdown-item">Completed</option>
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="null" class="dropdown-item">N/A</option>
+                {% elif x[5] == "N" %}
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="Y" class="dropdown-item">Completed</option>
+                <option value="null" class="dropdown-item">N/A</option>
+                {% else %}
+                <option value="null" class="dropdown-item">N/A</option>
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="Y" class="dropdown-item">Completed</option>
+                {% endif %}                  
+            </select>
+        </div>
+
+        <div class="form-group col-md-2 mt-4">
+        {% if x[5] == "Y" %}
+            <input class="form-control" value="{{x[6]}}" name = "MutualExpectationAgreementDate" id='MutualExpectationAgreementDate' type="date">
+            {% else %}
+            <input class="form-control" style="display: none;" class="form-control" value="{{x[6]}}" name = "MutualExpectationAgreementDate" id='MutualExpectationAgreementDate' type="date">
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row"><!--Kaupapa-->
+        <div class="form-group col-md-5 mt-4">
+            <label class="quest">Kaupapa Māori Research MEA</label>
+        </div>
+
+        <div class="form-group col-md-2 mt-4">                
+            <select class="dropdown-header" name="KMRM" id="KMRM" onchange="datehide2(this)"  >
+                {% if x[7] == 'Y' %}
+                <option value="Y" class="dropdown-item">Completed</option>
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="null" class="dropdown-item">N/A</option>
+                {% elif x[7] == "N" %}
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="Y" class="dropdown-item">Completed</option>
+                <option value="null" class="dropdown-item">N/A</option>
+                {% else %}
+                <option value="null" class="dropdown-item">N/A</option>
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="Y" class="dropdown-item">Completed</option>
+                {% endif %}                 
+            </select>
+        </div>
+
+        <div class="form-group col-md-2 mt-4">
+            {% if x[7] == "Y" %}
+            <input class="form-control" value="{{x[8]}}" name = "KMRMDate" id='KMRMDate' type="date">
+            {% else %}
+            <input class="form-control" style="display: none;" value="{{x[8]}}" name = "KMRMDate" id='KMRMDate' type="date">
+            {% endif %}
+        </div>
+    </div>   
+                    
+    <div class="row"> <!--Intellectual-->
+        <div class="form-group col-md-5 mt-4">
+            <label class="quest">Intellectual Property Agreement </label>
+        </div>
+        
+        <div class="form-group col-md-2 mt-4">
+            <select class="dropdown-header" name="IntellectualPropertyAgreement" id="IntellectualPropertyAgreement" onchange="datehide3(this)">
+                {% if x[9] == 'Y' %}
+                <option value="Y" class="dropdown-item">Completed</option>
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="null" class="dropdown-item">N/A</option>
+                {% elif x[9] == "N" %}
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="Y" class="dropdown-item">Completed</option>
+                <option value="null" class="dropdown-item">N/A</option>
+                {% else %}
+                <option value="null" class="dropdown-item">N/A</option>
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="Y" class="dropdown-item">Completed</option>
+                {% endif %}                  
+            </select>
+        </div>
+
+        <div class="form-group col-md-2 mt-4">
+            {% if x[9] == "Y" %}
+            <input class="form-control mb-3" value="{{x[10]}}" name = "IntellectualPropertyAgreementDate" id='IntellectualPropertyAgreementDate' type="date">
+            {% else %}
+            <input style="display: none;" class="form-control mb-3" value="{{x[10]}}" name = "IntellectualPropertyAgreementDate" id='IntellectualPropertyAgreementDate' type="date">
+            {% endif %}
+        </div>
+    </div>   
+           
+    <div class="row"> <!--Thesis-->
+        <div class="form-group col-md-5 mt-4">
+            <label class="quest">Thesis proposal seminar (Compulsory) *</label>
+        </div>
+
+        <div class="form-group col-md-2 mt-4">
+            <select class="dropdown-header" name='ThesisProposalSeminar' id='ThesisProposalSeminar' onchange="datehide4(this)">
+                {% if x[11] == 'Y' %}
+                <option value="Y" class="dropdown-item">Completed</option>
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="null" class="dropdown-item">N/A</option>
+                {% elif x[11] == "N" %}
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="Y" class="dropdown-item">Completed</option>
+                <option value="null" class="dropdown-item">N/A</option>
+                {% else %}
+                <option value="null" class="dropdown-item">N/A</option>
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="Y" class="dropdown-item">Completed</option>
+                {% endif %}                
+            </select>
+        </div>
+        
+        <div class="form-group col-md-2 mt-4">
+            {% if x[11] == "Y" %}
+            <input class="form-control" value="{{x[12]}}" name = "ThesisProposalSeminarDate" id="ThesisProposalSeminarDate" type="date">
+            {% else %}
+            <input style="display: none;" class="form-control" value="{{x[12]}}" name = "ThesisProposalSeminarDate" id="ThesisProposalSeminarDate" type="date">
+            {% endif %}
+        </div>
+    </div>
+        
+    <div class="row"> <!--Research-->
+        <div class="form-group col-md-5 mt-4">
+            <label class="quest">Research Proposal Approved by appropriate Faculty/Centre Postgraduate or equivalent Committee (Compulsory) *</label>
+        </div>
+
+        <div class="form-group col-md-2 mt-4">
+            <select class="dropdown-header" name='ProposalApproval' id="ProposalApproval" onchange="datehide5(this)">
+                {% if x[13] == 'Y' %}
+                <option value="Y" class="dropdown-item">Completed</option>
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="null" class="dropdown-item">N/A</option>
+                {% elif x[13] == "N" %}
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="Y" class="dropdown-item">Completed</option>
+                <option value="null" class="dropdown-item">N/A</option>
+                {% else %}
+                <option value="null" class="dropdown-item">N/A</option>
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="Y" class="dropdown-item">Completed</option>
+                {% endif %}                  
+            </select>
+        </div>
+
+        <div class="form-group col-md-2 mt-4">
+            {% if x[13] == "Y" %}
+            <input class="form-control" value="{{x[14]}}" name = "ProposalApprovalDate" id='ProposalApprovalDate' type="date">
+            {% else %}
+            <input style="display: none;" class="form-control" value="{{x[14]}}" name = "ProposalApprovalDate" id='ProposalApprovalDate' type="date">
+            {% endif %}
+        </div>
+    </div>   
+            
+    <div class="row"> <!--Lincoln-->
+        <div class="form-group col-md-5 mt-4">
+            <label class="quest">Lincoln University PG conference presentation</label>
+        </div>
+
+        <div class="form-group col-md-2 mt-4">
+            <select class="dropdown-header" name='PGConference' id="PGConference" onchange="datehide6(this)">
+                {% if x[15] == 'Y' %}
+                <option value="Y" class="dropdown-item">Completed</option>
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="null" class="dropdown-item">N/A</option>
+                {% elif x[15] == "N" %}
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="Y" class="dropdown-item">Completed</option>
+                <option value="null" class="dropdown-item">N/A</option>
+                {% else %}
+                <option value="null" class="dropdown-item">N/A</option>
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="Y" class="dropdown-item">Completed</option>
+                {% endif %}                
+            </select>
+        </div>
+        
+        <div class="form-group col-md-2 mt-4">
+            {% if x[15] == "Y" %}
+            <input class="form-control" value="{{x[16]}}" name = "PGConferenceDate" id="PGConferenceDate" type="date">
+            {% else %}
+            <input style="display: none;" class="form-control" value="{{x[16]}}" name = "PGConferenceDate" id="PGConferenceDate" type="date">
+            {% endif %}
+        </div>        
+    </div>
+
+    <div class="row"> <!--Thesis-->
+        <div class="form-group col-md-5 mt-4">
+            <label class="quest">Thesis Results Seminar </label>
+        </div>
+                        
+        <div class="form-group col-md-2 mt-4">
+            <select class="dropdown-header" name='ResultsSeminar' id="ResultsSeminar" onchange="datehide7(this)">                
+                {% if x[17] == 'Y' %}
+                <option value="Y" class="dropdown-item">Completed</option>
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="null" class="dropdown-item">N/A</option>
+                {% elif x[17] == "N" %}
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="Y" class="dropdown-item">Completed</option>
+                <option value="null" class="dropdown-item">N/A</option>
+                {% else %}
+                <option value="null" class="dropdown-item">N/A</option>
+                <option value="N" class="dropdown-item">Incompleted</option>
+                <option value="Y" class="dropdown-item">Completed</option>
+                {% endif %}                  
+            </select>
+        </div>
+        
+        <div class="form-group col-md-2 mt-4">
+            {% if x[17] == "Y" %}
+            <input class="form-control" value="{{x[18]}}"  name = "ResultsSeminarDate" id="ResultsSeminarDate" type="date">
+            {% else %}
+            <input style="display: none;" class="form-control" value="{{x[18]}}"  name = "ResultsSeminarDate" id="ResultsSeminarDate" type="date">
+            {% endif %}
+        </div>
+    </div>   
+
+          {% endfor %}
+        
+    <!-- buttons  -->
+    <div class="buttonArea">
+        <button onclick="window.location.href='../section_a/edit?report={{report_id}}'" class="prevBtn" title="Previous" type="submit" name="submit" value ="Previous">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            </svg>
+        </button>            
+
+        <button type='submit' name='submit' value ='Save & Exit' class="snxBtn" title="Save & Exit">
+            <i class="glyphicon glyphicon-floppy-save"></i>
+        </button> 
+        
+        <button type='submit' name='submit' value ='Next' class="nxtBtn" title="Next">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </button>
+    </div>
+
+    </form>
+
+
+<script>
+    function datehide0(that) {
+    if (that.value == "Y" | that.value == null) {
+        document.getElementById("InductionProgrammeDate").style.display = "block";
+    } else {
+        document.getElementById("InductionProgrammeDate").style.display = "none";
+    }
+}
+function datehide1(that) {
+    if (that.value == "Y" | that.value == null) {
+        document.getElementById("MutualExpectationAgreementDate").style.display = "block";
+    } else {
+        document.getElementById("MutualExpectationAgreementDate").style.display = "none";
+    }
+}
+function datehide2(that) {
+    if (that.value == "Y" | that.value == null) {
+        document.getElementById("KMRMDate").style.display = "block";
+    } else {
+        document.getElementById("KMRMDate").style.display = "none";
+    }
+}
+function datehide3(that) {
+    if (that.value == "Y" | that.value == null) {
+        document.getElementById("IntellectualPropertyAgreementDate").style.display = "block";
+    } else {
+        document.getElementById("IntellectualPropertyAgreementDate").style.display = "none";
+    }
+}
+function datehide4(that) {
+    if (that.value == "Y" | that.value == null) {
+        document.getElementById("ThesisProposalSeminarDate").style.display = "block";
+    } else {
+        document.getElementById("ThesisProposalSeminarDate").style.display = "none";
+    }
+}
+function datehide5(that) {
+    if (that.value == "Y" | that.value == null) {
+        document.getElementById("ProposalApprovalDate").style.display = "block";
+    } else {
+        document.getElementById("ProposalApprovalDate").style.display = "none";
+    }
+}
+function datehide6(that) {
+    if (that.value == "Y" | that.value == null) {
+        document.getElementById("PGConferenceDate").style.display = "block";
+    } else {
+        document.getElementById("PGConferenceDate").style.display = "none";
+    }
+}
+function datehide7(that) {
+    if (that.value == "Y" | that.value == null) {
+        document.getElementById("ResultsSeminarDate").style.display = "block";
+    } else {
+        document.getElementById("ResultsSeminarDate").style.display = "none";
+    }
+}
+</script>
+
+
+<script>
+    function sectionFInfo() {
+        var x = document.getElementById("b1Info");
+        if (x.style.display === "none") {
+        x.style.display = "block";
+        } else {
+        x.style.display = "none";
+        }
+    }
+</script>
+</section>
+{% endblock %}        

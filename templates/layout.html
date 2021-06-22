@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+    <!-- customisable title -->
+    <title>{% block title %}{% endblock %}</title>
+  
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- style CSS -->
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">        
+    
+    <!-- form with icon -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+   
+    <!-- customisable style -->
+    {% block style %}
+   {% endblock %}
+
+</head>
+
+<body>
+
+    <!--focus only/ usability friendly-->
+<div>
+    <a class="sr-only sr-only-focusable" href="#maincontent"></a>
+</div>
+
+<div class="wrapper"><!-- starts wrapper div -->
+    
+<!-- BLUE HEADER WITH LOGO AND PROFILE BLOCK -->
+<header id="page-header">
+    <div id="container-fluid"><!--end container-fluid div-->        
+        <div class="row-fluid">
+            <div id="logo">
+                <img src="/static/images/logoblue.jpg" class="img-responsive" alt="logo">        
+            </div>
+            <div id="profileblock">
+                <!-- report -->
+                    <a href="/">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#feda2a" class="bi bi-file-earmark-ruled" viewBox="0 0 16 16">
+                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V9H3V2a1 1 0 0 1 1-1h5.5v2zM3 12v-2h2v2H3zm0 1h2v2H4a1 1 0 0 1-1-1v-1zm3 2v-2h7v1a1 1 0 0 1-1 1H6zm7-3H6v-2h7v2z"/>
+                        </svg> 
+                    </a>
+                    <!-- notification -->
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#feda2a" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+                    </svg> -->
+                    <!-- usermenu --> 
+                    <span class="usertext">{{user_name}}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="60" viewBox="0 0 16 16" preserveAspectRatio="xMinYMid meet" overflow="visible">
+                        <path d="M5.2 10.3L0 13.1V16h16v-3l-5.2-2.7c-.5-.3-.6-.9-.2-1.3 0 0 1.4-1.8 1.4-3.8C12 2.3 10.2 0 8 0S4 2.3 4 5.2C4 7.2 5.4 9 5.4 9c.4.5.3 1-.2 1.3z" fill="#999"/>
+                    </svg>        
+                </div>
+            </div><!--end row-fluid-->
+        </div><!--end container-fluid div-->
+    </header>
+    
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-inverse" id="mainnav">
+        <div class="container-fluid">       
+            <ul class="nav" id="navbar-nav">
+                <li class="dropdown active"><a title="Courses and notifications" href="https://learn.lincoln.ac.nz/my/" id="nav-item">My Learn</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="cm_submenu_1" id="nav-item">Lincoln University</a>
+                    <ul class="dropdown-menu">
+                        <li id="inside-dropdown"><a title="Lincoln University www site" href="http://www.lincoln.ac.nz" target="_blank">Lincoln website</a></li>
+                        <li id="inside-dropdown"><a href="http://www.lincoln.ac.nz/Lincoln-Home/Student-Life/Campus-Map/">Campus map</a></li>
+                        <li id="inside-dropdown"><a title="Staff location and contact information" href="http://www.lincoln.ac.nz/Lincoln-Home/About-Lincoln/Staff-Profiles/">Staff A-Z</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="cm_submenu_2" id="nav-item">Learning, Teaching and Library</a>
+                    <ul class="dropdown-menu">
+                        <li id="inside-dropdown"><a title="Lincoln University Library Teaching and Learning website" href="http://library.lincoln.ac.nz" target="_blank">LTL website</a></li>
+                        <li id="inside-dropdown"><a title="Support for your study" href="https://ltl.lincoln.ac.nz/advice/study-skills/">Study skills</a></li>
+                        <li id="inside-dropdown"><a title="Ask LTL a Study Question" href="https://ltl.lincoln.ac.nz/services/contact-us/?frm=Learn-Dropdown">Ask Live</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="#cm_submenu_3" class="dropdown-toggle" data-toggle="dropdown" id="nav-item">Student Sites</a>
+                    <ul class="dropdown-menu">
+                        <li id="inside-dropdown"><a title="Student Graduation and Records" href="http://lucas.lincoln.ac.nz/">LUCAS</a></li>
+                        <li id="inside-dropdown"><a  title="Health, Wellbeing, Māori, Pasifika, International Support" href="https://www.lincoln.ac.nz/Student-Life/Student-Support/">Student Help and Support</a></li>
+                        <li id="inside-dropdown"><a title="Supporting students with disability, injury or illness." href="http://learn.lincoln.ac.nz/course/view.php?id=327">Inclusive Education</a></li>
+                        <li id="inside-dropdown"><a title="Career Centre" href="http://careerhub.lincoln.ac.nz/">Career Centre</a></li>
+                        <li id="inside-dropdown"><a title="Recreation Centre" href="http://www.lincoln.ac.nz/reccentre">Recreation Centre</a></li>
+                        <li id="inside-dropdown"><a title="LU Students&#039; Association" href="http://www.lusa.org.nz/">LUSA Student at Lincoln</a></li>
+                        <li id="inside-dropdown"><a title="MyLinc" href="https://mylinc.nz/">MyLinc</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown" title="My courses" id="nav-item">My courses</a>
+                    <ul class="dropdown-menu">
+                        <li id="inside-dropdown"><a title="COMP639 - Studio Project - Semester One" href="https://learn.lincoln.ac.nz/course/view.php?id=1131">COMP639_S1</a></li>
+                        <li id="inside-dropdown"><a title="COMP640 - ST: User Experience - Semester One" href="https://learn.lincoln.ac.nz/course/view.php?id=1132">COMP640_S1</a></li>
+                        <li id="inside-dropdown"><a title="COMP998 - Master of Applied Computing Page" href="https://learn.lincoln.ac.nz/course/view.php?id=1140">COMP998</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a id="nav-item" href="/logout">Log Out</a></li>
+            </ul>
+        </div>
+    </nav> 
+    
+    <!-- NAV STUDENT STARTS-->
+    {% if user_role == 'Student' and user_action == 'edit' %}
+    <nav class="navbar navbar-inverse" id="mainnav2">
+        <div class="container-fluid">       
+            <ul class="nav" id="navbar-nav2">
+                <li class="dropdown active home" onclick="home()"><a href="/student" id="nav-item">Home</a>
+                <li class="dropdown active">
+                    <a href="/instructions" id="nav-item">Instructions</a>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="nav-item">Section A </span></a>
+                    <ul class="dropdown-menu">
+                        <li id="inside-dropdown"><a href="/section_a/edit?report={{report_id}}">My Records</a></li>
+                        <li id="inside-dropdown"><a href="/section_a/edit?report={{report_id}}#sec-A2">Thesis Information</a></li>
+                        <li id="inside-dropdown"><a href="/section_a/edit?report={{report_id}}#sec-A3">Scholarship</a></li>
+                        <li id="inside-dropdown"><a href="/section_a/edit?report={{report_id}}#sec-A4">Employment</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="nav-item">Section B</a>
+                    <ul class="dropdown-menu">
+                        <li id="inside-dropdown"><a href="/section_b1/edit?report={{report_id}}#sec-B1">Milestones</a></li>
+                        <li id="inside-dropdown"><a href="/section_b2/edit?report={{report_id}}#sec-B2">Committees</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="nav-item">Section C</a>
+                    <ul class="dropdown-menu">
+                        <li id="inside-dropdown"><a href="/section_c/edit?report={{report_id}}">Evaluation of Faculty</a></li>                        
+                    </ul>
+                </li>
+                <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="nav-item">Section D</a>
+                    <ul class="dropdown-menu">
+                        <li id="inside-dropdown"><a href="/section_d1/edit?report={{report_id}}">Objectives Last 6 Months</a></li>
+                        <li id="inside-dropdown"><a href="/section_d2/edit?report={{report_id}}">Covid-19 Effects</a></li>
+                        <li id="inside-dropdown"><a href="/section_d3/edit?report={{report_id}}">Academic Achievement</a></li>
+                        <li id="inside-dropdown"><a href="/section_d4/edit?report={{report_id}}">Objectives Next 6 Months</a></li>
+                        <li id="inside-dropdown"><a href="/section_d5/edit?report={{report_id}}">Expected Expenditure</a></li>
+                    </ul>
+                </li>  
+
+                <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="nav-item">Section F</a>
+                    <ul class="dropdown-menu">
+                        <li id="inside-dropdown"><a href="/section_f/edit?report={{report_id}}"> Assessment of Supervision</a></li>                    
+                    </ul>
+                </li>
+                <li class="dropdown summary" onclick="summary()"><a href="/section_abcdf/edit/submit?report={{report_id}}" id="nav-item">Summary</a>
+                </li> 
+            </ul>
+        </div>  
+    </nav>
+
+    {% elif user_role == 'Student' and user_action != 'edit' %}
+    <nav class="navbar navbar-inverse" id="mainnav2">
+        <div class="container-fluid">       
+            <ul class="nav" id="navbar-nav2">
+                <li class="dropdown active home" onclick="home()"><a href="/student" id="nav-item">Home</a>
+                <li class="dropdown active">
+                    <a href="/instructions" id="nav-item">Instructions</a>
+                </li>
+            </ul>
+        </div>  
+    </nav>
+
+
+    {% elif user_role == 'Professor' and user_action == 'edit' %}
+    <nav class="navbar navbar-inverse" id="mainnav2">
+        <div class="container-fluid">       
+            <ul class="nav" id="navbar-nav2">
+                <li class="dropdown active home" onclick="home()"><a href="/supervisor/pending&report?view=pending" id="nav-item">Pending Reports</a>
+                <li class="dropdown summary" onclick="summary()"><a href="/supervisor/pending&report?view=historic" id="nav-item">Completed Reports</a>
+                </li> 
+                <li class="dropdown active">
+                    <a href="/instructions" id="nav-item">Instructions</a>
+                </li>                
+            </ul>
+        </div>  
+    </nav>
+
+    {% elif user_role == 'Convenor' and user_action == 'edit' %}
+    <nav class="navbar navbar-inverse" id="mainnav2">
+        <div class="container-fluid">       
+            <ul class="nav" id="navbar-nav2">
+                <li class="dropdown active home" onclick="home()"><a href="/convenor/pending&report?view=pending" id="nav-item">Pending Reports</a>
+                    <li class="dropdown summary" onclick="summary()"><a href="/convenor/pending&report?view=historic" id="nav-item">Completed Reports</a>
+                    </li> 
+                    <li class="dropdown active">
+                        <a href="/instructions" id="nav-item">Instructions</a>
+                    </li>                
+                </ul>
+        </div>  
+    </nav>
+
+
+
+    {% elif user_role == 'Admin' and user_action == 'edit' %}
+
+    <nav class="navbar navbar-inverse" id="mainnav2">
+        <div class="container-fluid">       
+            <ul class="nav" id="navbar-nav2">
+            <!-- ADMIN MOCKED -->
+                <li class="dropdown active home" onclick="home()"><a href="/admin" id="nav-item">Home Admin</a>
+                <li class="dropdown active">
+                    <a href="/instructions" id="nav-item">Instructions</a>
+                </li>
+                <li class="dropdown summary" onclick="summary()"><a href="#" id="nav-item">Summary</a>
+                </li> 
+            </ul>
+        </div>  
+    </nav>
+
+    {% endif %}
+
+    <!-- NAV SUPERVISOR STARTS -->
+
+    <!-- <nav class="navbar navbar-inverse" id="mainnav">
+        <div class="container-fluid">
+            <ul class="nav" id="navbar-nav">
+                <li class="dropdown active home" onclick="home()"><a href="/supervisor/pending&report" id="nav-item">Home SPVR</a>
+                <li class="dropdown active">
+                    <a href="/templates/instructions.html" id="nav-item">Instructions</a>
+                </li>                
+                <li class="dropdown summary" onclick="summary()"><a href="/supervisor/studentlist" id="nav-item">My Students</a>
+                </li> 
+                <li class="dropdown"><a href="/logout">Log Out</a></li>
+            </ul>
+        </div>
+    </nav>
+     -->
+
+     <!-- END NAV SUPERVISOR -->
+
+    
+     
+
+    <!-- NAV CONVENOR STARTS -->
+
+    <!-- <nav class="navbar navbar-inverse" id="mainnav">
+        <div class="container-fluid">       
+            <ul class="nav" id="navbar-nav">
+                <li class="dropdown active home" onclick="home()"><a href="/supervisor/pending&report" id="nav-item">Home SPVR</a>
+                <li class="dropdown active">
+                    <a href="/templates/instructions.html" id="nav-item">Instructions</a>
+                </li>                
+                <li class="dropdown summary" onclick="summary()"><a href="#" id="nav-item">My Students</a>
+                </li> 
+                <li class="dropdown"><a href="/logout">Log Out</a></li>
+            </ul>
+        </div>
+    </nav> -->
+    
+    <!-- END NAV CONVENOR -->
+
+
+    <!-- NAV ADMIN START -->
+    <!-- <nav class="navbar navbar-inverse" id="mainnav">
+        <div class="container-fluid">
+            <ul class="nav" id="navbar-nav">
+                <li class="dropdown active home" onclick="home()"><a href="/admin" id="nav-item">Home Admin</a>                    
+                <li class="dropdown"><a href="/logout">Log Out</a>
+            </ul>
+        </div>
+    </nav> -->
+
+
+    
+
+    <!-- END NAV ADMIN -->
+
+
+
+    <!-- MAIN CONTENT -->
+  
+    <div class="container-fluid" id="maincontent">                   
+        {% block content %}
+       
+        {% endblock %}
+        <!-- <a href="#top" class="back-to-top" style="display: inline;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708l6-6z"/>
+            <path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+          </svg><span class="lambda-sr-only">Back to top</span></a> -->
+    </div>
+
+    <!-- FOOTER-->
+    <footer id="footer_main">
+        <p>Copyright 2021 © Lincoln University <br> Team 1</p>
+    </footer>
+
+
+    <!-- active navbar -->
+    <script>
+        // Get the container element
+         var btnContainer = document.getElementById("navbar-nav");
+ 
+         // Get all buttons with class="btn" inside the container
+         var btns = btnContainer.getElementsByClassName("dropdown-menu");
+         // Loop through the buttons and add the active class to the current/clicked button
+         for (var i = 0; i < btns.length; i++) {
+             btns[i].addEventListener("click", function() {
+                 var current = btnContainer.getElementsByClassName("active");
+                 current[0].className = current[0].className.replace(" active", "");
+                 this.parentElement.className += " active";
+         });
+         };
+ 
+         function home(){
+             var home = btnContainer.getElementsByClassName("home");
+             var current = btnContainer.getElementsByClassName("active");
+             current[0].className = current[0].className.replace(" active", "");
+             home[0].className += " active";
+         }
+         function summary(){
+             var summary = btnContainer.getElementsByClassName("summary");
+             var current = btnContainer.getElementsByClassName("active");
+             current[0].className = current[0].className.replace(" active", "");
+             summary[0].className += " active";
+         };
+        // JS for admin
+        var x= document.getElementsByClassName("completedreport");
+        var i= document.getElementsByClassName("incompletedreport");
+        var xx;
+        var ii;
+        function functionCompleted() {
+            for ( xx= 0; xx < x.length; xx++) {
+                if (x[xx].style.display === "none"){
+                for ( ii= 0; ii < i.length; ii++){
+                    i[ii].style.display = "none"
+                };
+                x[xx].style.display = "table-row";
+                }
+            }
+        };
+        function functionIncompleted() {
+            for ( ii= 0; ii < i.length; ii++) {
+                if (i[ii].style.display === "none"){
+                for ( xx= 0; xx < x.length; xx++){
+                    x[xx].style.display = "none"
+                };
+                i[ii].style.display = "table-row";
+                }
+            }
+        };
+        var f = 0;
+        function move() {
+        if (f == 0) {
+            f = 1;
+            var elem = document.getElementById("myBar");
+            var progress = document.getElementById("myProgress");
+            progress.style.display = "block";
+            var width = 1;
+            var id = setInterval(frame, 10);
+            function frame() {
+            if (width >= 100) {
+                clearInterval(id);
+                f = 0;
+            } else {
+                width++;
+                elem.style.width = width + "%";
+            }
+            }
+        }
+        };
+     </script>
+</div><!--end wrapper div-->
+</body>
+</html>

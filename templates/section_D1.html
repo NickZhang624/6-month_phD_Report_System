@@ -1,0 +1,104 @@
+{% extends 'layout.html' %}
+{% block title %}
+Lincoln University Postgraduate Reporting Portal
+{% endblock %}
+
+{% block content %}
+
+<!-- <h2>Progress and Achievements - Assessment by student and supervisors</h2> -->
+<section id="sec-D1">
+    <h2>SECTION D - Research Objectives for the last Six Months    
+      <button class="iInfo" onclick="sectionFInfo()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#FDDA2D" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+        </svg>
+    </button>
+    <div id="d1Info" style="display: none;">This is an assessment of your progress and will be included in your postgraduate record.  It is intended primarily to assist you to plan and carry out your study.  The assessment is a documented record of your study and will illustrate your ability to define and achieve objectives.
+      Complete this after discussing it with your supervisor. 
+      
+      Ensure you note and address any deviations from the standard 3-year PhD timeline. Add additional rows to these tables as necessary.
+    </div>
+    </h2>
+
+
+  <form action="/section_d1/edit" method="POST">
+      
+  <table class="table table-borderless">
+    <thead>
+      <tr>    
+        <td width="30%"><label for=""><h4>Objectives from last 6 months</h4></label></td>
+        <td width="20%"><label for=""><h4>Status</h4></label></td>
+        <td width="20%"><label for=""><h4>Reason for incomplete</h4></label></td>
+      </tr>
+    </thead>
+    <tbody>
+        {% for aa in range(rowNumber) %}
+        <tr>
+            <td>{{loop.index}}.{{D1Data[aa][0]}}</td>      
+            <td>
+              <select class="dropdown-header" name="{{rowName[aa][0]}}">
+                <option value="Incomplete" class="dropdown-item"{% if D1Data[aa][1] == 'Incomplete'  %}selected {%  endif %}>Incompleted</option>
+                <option value="Complete" class="dropdown-item" {% if D1Data[aa][1] == 'Complete'  %}selected {%  endif %}>Completed</option>
+              </select>
+              <!-- <input class="form-control" name="{{rowName[aa][0]}}" type="text" placeholder="$"{% if D1Data[aa][1] %}value="{{D1Data[aa][1]}}"{% endif %}> -->
+            </td>
+            <td>
+              <div class="input" data-reactid=".hbspt-forms-1.1:$7.$message">
+                <textarea name="{{rowName[aa][1]}}" id="message-808cf8a6-4352-4567-920a-2bd57d8b231f_6878" class="hs-input" data-reactid=".hbspt-forms-1.1:$7.$message.0" style="margin: 0px; width: 400px; height: 35px;">{% if D1Data[aa][2] %}{{D1Data[aa][2]}}{% endif %}</textarea>
+              </div>      
+            </td>
+          </tr>     
+        {% endfor %}
+    </tbody>
+  </table>
+
+      <!-- buttons  -->
+      <div class="buttonArea">
+        <input hidden name = 'reportid' value="{{report_id}}">    
+        
+        <button type='submit' name='submit' value ='Previous' class="prevBtn" title="Previous">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+              <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+          </svg>
+        </button>
+                
+        <button type='submit' name='submit' value ='Save & Exit' class="snxBtn" title="Save & Exit">
+          <i class="glyphicon glyphicon-floppy-save"></i>
+        </button>
+  
+        <button type='submit' name='submit' value ='Next' class="nxtBtn" title="Next">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+              <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+        </button>      
+      </div>
+
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <span>{{ message }}<span>
+        {% endfor %}
+        </ul>
+      {% endif %}
+      {% endwith %}
+
+  </form>
+</section>
+
+
+<!-- i icon script -->
+<script>
+  function sectionFInfo() {
+      var x = document.getElementById("d1Info");
+      if (x.style.display === "none") {
+      x.style.display = "block";
+      } else {
+      x.style.display = "none";
+      }
+  }
+</script>
+
+{% endblock %}

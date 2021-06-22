@@ -1,0 +1,764 @@
+{% extends 'layout.html' %}
+{% block title %}
+Lincoln University Postgraduate Reporting Portal
+{% endblock %}
+
+
+{% block content %}  
+<section class="convenorHome">
+  <h3>Department/School PG Convenor</h3>
+
+  <form action="#" method="POST">
+    
+    <div class="row">        
+      <div class="form-group col-md-4 mt-4">
+        <label for="">Highlight any area needing closer consideration:</label>
+      </div>
+      <div class="form-group col-md-6 mt-4">
+        <div class="input" data-reactid=".hbspt-forms-1.1:$7.$message">
+          <textarea name="consideration" id="message-808cf8a6-4352-4567-920a-2bd57d8b231f_6878" class="hs-input" name='comments' data-reactid=".hbspt-forms-1.1:$7.$message.0" style="margin: 0px; width: 400px; height: 100px;">{{comments[0][0]}}</textarea>
+        </div>        
+      </div>
+    </div>
+
+    <div class="row">        
+      <div class="form-group col-md-4 mt-4">
+              <label>Rating: </label>
+      </div>
+      <div class="form-group col-md-4 mt-4">
+        <div class="input-group">                                
+          <div class="form-check">                    
+            <input class="mr-2 ml-2" type="radio" name="trafficLight"id="G"value="G"{% if comments[0][1] != None and comments[0][1] == 'G' %}checked{% endif%}>
+            <label class="form-check-label" for="G">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#198754" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                <circle cx="8" cy="8" r="8"/>
+              </svg>
+            </label>
+
+             
+            <input class="mr-2 ml-2" type="radio" name="trafficLight"id="O"value="O"{% if comments[0][1] != None and comments[0][1] == "O" %}checked{% endif%}>
+            <label class="form-check-label" for="O">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fd7e14" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                <circle cx="8" cy="8" r="8"/>
+              </svg>
+            </label>                
+            
+            <input class="mr-2 ml-2" type="radio" name="trafficLight"id="R"value="R"{% if comments[0][1] != None and comments[0][1] == "R" %}checked{% endif%}>
+            <label class="form-check-label" for="R">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#dc3545" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                <circle cx="8" cy="8" r="8"/>
+              </svg>                                                
+            </label>                                                
+          </div>
+        </div>
+
+      </div>      
+        
+      <!-- buttons  -->
+      <div class="buttonArea">     
+        <input hidden value='{{reportID}}' name='report_id'>      
+        <input hidden value='{{studentname}}' name='studentname'>              
+        <button type='submit' action="/convenor/pending&report" value ='Save & Exit' name='submit' class="snxBtn" title="Save & Exit">
+            <i class="glyphicon glyphicon-floppy-save"></i>
+        </button>
+                        
+      </div>  
+  </form>
+
+
+<!-- Summary section -->
+
+  <!-- Section A -->        
+  {% if sectionA %}  
+  <a class="toggleSummary" onclick="functionA()">Section A</a>    
+  <br>
+
+  <div id="divA" style="display: none;">    
+    <table class="table table-borderless tableSummary">
+        <tr>
+            <th colspan="2">Section A - Student Information</th>
+        </tr>              
+      <div class="tableSummary">
+        <tr>
+            <td>Student Name</td>
+            <td>{{studentname}}</td>
+        </tr>    
+        <tr>
+            <td>Student ID</td>
+            <td>{{sectionA[0]}} </td>
+        </tr>
+        <tr>
+            <td>Enrolment Date</td>
+            <td>{{sectionA[1]}} </td>
+        </tr>    
+        <tr>
+            <td>Current Address</td>
+            <td>{{sectionA[2]}} </td>
+        </tr>   
+        <tr>
+            <td>Phone</td>
+            <td>{{sectionA[3]}} </td>
+        </tr>    
+        <tr>
+            <td>Study Mode</td>
+            <td>{{sectionA[4]}} </td>
+        </tr>
+        <tr>
+            <td>Department</td>
+            <td>{{sectionA[5]}} </td>
+        </tr>
+        <tr>
+            <td>Thesis Title</td>
+            <td width="70%">{{sectionA[6]}} </td>
+        </tr>    
+      </div> <!-- .tableSummary -->
+      
+
+      <tr>
+        <th colspan="2">Section A - Supervision Team</th>    
+      </tr>
+          {% for eachSP in supervisionTeam %} 
+              {% if eachSP[0] == 'Supervisor' %}
+              <tr>                
+                  <td>Chief Supervisor:</td>
+                  <td>{{eachSP[1]}}&nbsp;&nbsp;{{eachSP[2]}}
+                      </td>
+              </tr>              
+              {% endif %}
+          {% endfor %}
+
+          {% for eachSP in supervisionTeam %} 
+              {% if eachSP[0] == 'Associate' %}
+              <tr>
+                <td>Associate Supervisor:</td>
+                <td>
+                {{eachSP[1]}}&nbsp;&nbsp;{{eachSP[2]}}
+                </td>
+              </tr>
+              {% endif %}
+          {% endfor %}
+
+          {% for eachSP in supervisionTeam %} 
+              {% if eachSP[0] == 'Other Supervisor' %}
+              <tr>
+                <td>Other Supervisor:</td>                    
+                <td>
+                {{eachSP[1]}}&nbsp;&nbsp;{{eachSP[2]}}
+                </td>
+              </tr>
+              {% endif %}
+          {% endfor %}
+      
+
+      {% for eachSchol in scholarships %}
+      <tr>
+        <th colspan="2">Section A - Scholarships</th>
+      </tr>
+
+      <tr>
+          <td>Scholarship Name:</td>
+          <td>{{eachSchol[0]}}</td>
+      </tr>
+      
+      <tr>
+          <td>Value:</td>
+          <td>${{eachSchol[1]}}</td>        
+      </tr>
+      
+      <tr>
+          <td>Tenure:</td>
+          <td></td>
+      </tr>
+      
+      <tr>
+          <td>End Date:</td>
+          <td>{{eachSchol[2]}}</td>
+      </tr>
+        {% endfor %}
+
+        <tr>
+          <th colspan="2">Section A - Employment history</th>
+        </tr> 
+        {% for eachEmp in employment %}
+        <tr>
+          <td>Job Title:</td>
+          <td>{{eachEmp[0]}}</td>
+      </tr>
+      <tr>
+          <td>Work Type:</td>
+          <td>{{eachEmp[1]}}</td>
+      </tr>
+      <tr>
+          <td>Supervisor Name:</td>
+          <td>{{eachEmp[2]}}&nbsp;{{eachEmp[3]}}</td>
+      </tr>
+
+      <tr>
+          <td>Hours/Week:</td>
+          <td>{{eachEmp[4]}}</td>
+      </tr>
+        {% endfor %}
+
+    </table>
+  </div>
+  {% endif %}
+
+  <!-- Section B -->        
+  {% if sectionB %}
+  <a class="toggleSummary" onclick="functionB()">Section B</a>    
+  <br>
+
+  <div id="divB" style="display: none;">
+      <table class="table table-borderless tableSummary">
+          <tr>
+              <th width="60%">Section B - Milestones</th> 
+              <th width="15%">Completed</th>
+              <th>Date</th>
+
+                  
+          </tr> 
+          <tr>
+              <td>Induction Programme (Compulsory)</td>
+              <td>{{sectionB[0]}}</td>
+              <td>{{sectionB[1]}}</td>
+          </tr>
+          <tr>
+              <td>Mutual Expectations Agreement(Compulsory)</td>
+              <td>{{sectionB[2]}}</td>
+              <td>{{sectionB[3]}}</td>
+          </tr>
+          <tr>
+              <td>Kaupapa Māori Research MEA (Compulsory if relevant)</td>
+              <td>{{sectionB[4]}}</td>
+              <td>{{sectionB[5]}}</td>
+          </tr>
+          <tr>
+              <td>Intellectual Property Agreement (Compulsory if relevant)</td>
+              <td>{{sectionB[6]}}</td>
+              <td>{{sectionB[7]}}</td>
+          </tr>
+          <tr>
+              <td>Thesis proposal seminar (Compulsory)</td>
+              <td>{{sectionB[8]}}</td>
+              <td>{{sectionB[9]}}</td>
+          </tr>
+          <tr>
+              <td>Research Proposal Approved by appropriate Faculty/Centre Postgraduate or equivalent Committee (Compulsory)</td>
+              <td>{{sectionB[10]}}</td>
+              <td>{{sectionB[11]}}</td>
+          </tr>
+          <tr>
+              <td>Lincoln University PG conference presentation</td>
+              <td>{{sectionB[12]}}</td>
+              <td>{{sectionB[13]}}</td>
+          </tr>
+          <tr>
+              <td>Thesis Results Seminar (Strongly recommended)</td>
+              <td>{{sectionB[14]}}</td>
+              <td>{{sectionB[15]}}</td>
+          </tr>
+      </table>
+
+      <table class="table table-borderless tableSummary">
+          <tr>
+              <th width="60%">Section B - Committes Approval</th>
+              <th>Status</th>
+          </tr>
+          <tr>
+              <td>Human Ethics Committee</td>
+              <td>{{sectionB[16]}}</td>
+          </tr>
+          <tr>
+              <td>Health and Safety Committee</td>
+              <td>{{sectionB[17]}}</td>
+          </tr>
+          <tr>
+              <td>Animal Ethics Committee</td>
+              <td>{{sectionB[18]}}</td>
+          </tr>
+          <tr>
+              <td>Institutional Biological Safety Committee</td>
+              <td>{{sectionB[19]}}</td>
+          </tr>
+          <tr>
+              <td>Radiation Protection Officer</td>
+              <td>{{sectionB[20]}}</td>
+          </tr>
+      </table>
+  </div>
+  {% endif %}
+
+  {% if sectionC %}
+  <!-- Section C -->
+  <a class="toggleSummary" onclick="functionC()">Section C</a>    
+    <br>
+  
+  <div id="divC" style="display: none;">
+      <table class="table table-borderless tableSummary">
+          <tr>
+              <th>Section C - Evaluation of Faculty (or Centre) performance
+                  {% if admin %}                    
+                      <a href="/section_c/edit?report={{reportID}}">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                          </svg>
+                      </a>                    
+                  {% endif %}
+              </th>
+              <th>Rate</th>
+              <th>Comment</th>
+          </tr>
+          <tr>
+              <td width="60%">Access to supervisors – principal</td>
+              <td>{{sectionC[0]}}</td>
+              <td>{{sectionC[1]}}</td>
+          </tr>
+          <tr>
+              <td>Access to supervisors – associate/others</td>
+              <td>{{sectionC[2]}}</td>
+              <td>{{sectionC[3]}}</td>
+          </tr>
+          <tr>
+              <td>Supervisor expertise– principal</td>
+              <td>{{sectionC[4]}}</td>
+              <td>{{sectionC[5]}}</td>
+          </tr>
+          <tr>
+              <td>Supervisor expertise – associate/other</td>
+              <td>{{sectionC[6]}}</td>
+              <td>{{sectionC[7]}}</td>
+          </tr>
+          <tr>
+              <td>Quality of supervisor feedback – principal</td>
+              <td>{{sectionC[8]}}</td>
+              <td>{{sectionC[9]}}</td>
+          </tr>
+          <tr>
+              <td>Quality of supervisor feedback – associate/ others</td>
+              <td>{{sectionC[10]}}</td>
+              <td>{{sectionC[11]}}</td>
+          </tr>
+          <tr>
+              <td>Timeliness of supervisor feedback – principal</td>
+              <td>{{sectionC[12]}}</td>
+              <td>{{sectionC[13]}}</td>
+          </tr>
+          <tr>
+              <td>Timeliness of supervisor feedback – associate/ others</td>
+              <td>{{sectionC[14]}}</td>
+              <td>{{sectionC[15]}}</td>
+          </tr>
+          <tr>
+              <td>Courses available</td>
+              <td>{{sectionC[16]}}</td>
+              <td>{{sectionC[17]}}</td>
+          </tr>
+          <tr>
+              <td>Workspace</td>
+              <td>{{sectionC[18]}}</td>
+              <td>{{sectionC[19]}}</td>
+          </tr>
+          <tr>
+              <td>Computer facilities</td>
+              <td>{{sectionC[20]}}</td>
+              <td>{{sectionC[21]}}</td>
+          </tr>
+          <tr>
+              <td>ITS support</td>
+              <td>{{sectionC[22]}}</td>
+              <td>{{sectionC[23]}}</td>
+          </tr>
+          <tr>
+              <td>Research software</td>
+              <td>{{sectionC[24]}}</td>
+              <td>{{sectionC[25]}}</td>
+          </tr>
+          <tr>
+              <td>Library facilities</td>
+              <td>{{sectionC[26]}}</td>
+              <td>{{sectionC[27]}}</td>
+          </tr>
+          <tr>
+              <td>Teaching & Learning Centre support</td>
+              <td>{{sectionC[28]}}</td>
+              <td>{{sectionC[29]}}</td>
+          </tr>
+          <tr>
+              <td>Statistical support</td>
+              <td>{{sectionC[30]}}</td>
+              <td>{{sectionC[31]}}</td>
+          </tr>
+          <tr>
+              <td>Research equipment</td>
+              <td>{{sectionC[32]}}</td>
+              <td>{{sectionC[33]}}</td>
+          </tr>
+          <tr>
+              <td>Technical support</td>
+              <td>{{sectionC[34]}}</td>
+              <td>{{sectionC[35]}}</td>
+          </tr>
+          <tr>
+              <td>Financial resources</td>
+              <td>{{sectionC[36]}}</td>
+              <td>{{sectionC[37]}}</td>
+          </tr>
+          <tr>
+              <td>Other (Please Specify)</td>
+              <td>{{sectionC[38]}}</td>
+              <td>{{sectionC[39]}}</td>
+          </tr>
+      </table>
+
+      <table class="table table-borderless tableSummary">
+          <tr>
+              <th>Section C - Evaluation of Faculty (or Centre) performance (cont.)</th>
+              <th></th>
+          </tr>
+          <tr>
+              <td width="60%">How frequently do you have a meeting with your supervisor?</td>
+              <td>{{sectionC[40]}}</td>
+          </tr>
+          <tr>
+              <td>What is the usual period for receiving feedback from your supervisor on submitted materials?</td>
+              <td>{{sectionC[41]}}</td>
+          </tr>
+          <tr>
+              <td>How do you receive your feedback from your supervisor?</td>
+              <td>{{sectionC[42]}}</td>
+          </tr>
+      </table>
+  </div>
+  {% endif %}
+
+  {% if sectionD %}
+  <!-- Section D -->
+  <a class="toggleSummary" onclick="functionD()">Section D</a>    
+    <br>
+
+  <div id="divD" style="display: none;">        
+      <table class="table table-borderless tableSummary">
+          <tr>
+              <th width="60%">Section D - Progress and Achievements</th>
+              <th width="15%"></th>
+              <th></th>
+          </tr>
+
+          <tr>
+              <td><label>Research Objectives</label></td>
+              <td><label>Status</label></td>    
+              <td><label>Comments</label></td>
+          </tr>
+
+          <tr><td>(1) Report on your Research Objectives for the last Six Months</td></tr>    
+          {%for each in sectionD[0]%}
+          <tr>
+              <td>{{loop.index}}. {{each[0]}}</td>        
+              <td>{{each[1]}}</td>
+              <td>{{each[2]}}</td>
+          </tr>
+          {%endfor%}
+
+          <tr><td>(2) Evaluation of effects of COVID-19 on research progress</td></tr>
+          {%for each in sectionD[1]%}
+          <tr>
+              <td>{{loop.index}}. {{each[0]}}</td>        
+          </tr>
+          {%endfor%}
+
+          <tr><td>(3) Other Significant Academic Achievements in the last Six Months</td></tr>
+          {%for each in sectionD[2]%}
+          <tr>
+              <td>{{loop.index}}. {{each[0]}}</td>        
+          </tr>
+          {%endfor%}
+
+          <tr><td>(4) Research Objectives for the next Six Months</td></tr>
+          {%for each in sectionD[3]%}
+          <tr>
+              <td>{{loop.index}}. {{each[0]}}</td>        
+              <td>{{each[1]}}</td>
+              <td>{{each[2]}}</td>
+          </tr>
+          {%endfor%}
+
+
+          <tr><td>(5) Expected Research Expenditure for the next Six Month</td></tr>
+          {%for each in sectionD[4]%}
+          <tr>
+              <td>{{loop.index}}. {{each[0]}}</td>        
+              <td>${{each[1]}}</td>
+              <td>{{each[2]}}</td>
+          </tr>
+          {%endfor%}
+      </table>
+  </div>
+  {% endif %}  
+
+    <!-- Section E -->
+    {% if supervisor_feedback or convenor_feedback %}
+    <a class="toggleSummary" onclick="functionE()">Section E</a>    
+    <br>
+
+    <div id="divE" style="display: none;">     
+    <table class="table table-borderless tableSummary">
+        <tr>
+        <th colspan="2">SECTION E - Assessment of Student by Supervisor(s)</th>
+        </tr>
+    </table>
+    {% endif %}
+
+    {% if supervisor_feedback %}
+    {% for sf in supervisor_feedback %}
+    <table class="table table-borderless tableSummary">
+        <tr>            
+            <td>
+                <label for="">Section E - Supervisor(s) Feedback</label>        
+            </td>
+        </tr>
+        <tr>            
+            <td>
+                <label for="Supervisor Role">Supervisor Role: </label> {{sf[11]}}
+            </td>            
+        </tr>
+        <tr>
+            <td>
+                <label for="Supervisor Name">Supervisor Name: </label> {{sf[9]}} {{sf[10]}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="">How do you rate the student's overall progress in the last 6 months</label>
+            </td>
+            <td>
+                {% if sf[2] == 0 %} N/A                            
+                {% elif sf[2] == 1 %} Very Unsatisfactory
+                {% elif sf[2] == 2 %} Unsatisfactory                        
+                {% elif sf[2] == 3 %} Neutral                            
+                {% elif sf[2] == 4 %} Good
+                {% else %} Very Good
+                {% endif %}    
+            </td>
+        </tr>  
+
+        
+        <tr>
+            <td>
+                How do you rate the student’s overall progress in terms of the 3-year PhD track
+            </td>
+            <td>                            
+                {% if sf[3] == 0 %} N/A                            
+                {% elif sf[3] == 1 %} Very Unsatisfactory
+                {% elif sf[3] == 2 %} Unsatisfactory                        
+                {% elif sf[3] == 3 %} Neutral                            
+                {% elif sf[3] == 4 %} Good
+                {% else %} Very Good
+                {% endif %}
+            </td>                        
+        </tr>
+
+        <tr>
+            <td>
+                How would you rate the quality of the student's academic work, e.g., research writing
+            </td>
+            <td>                            
+                {% if sf[4] == 0 %} N/A                            
+                {% elif sf[4] == 1 %} Very Unsatisfactory
+                {% elif sf[4] == 2 %} Unsatisfactory                        
+                {% elif sf[4] == 3 %} Neutral                            
+                {% elif sf[4] == 4 %} Good
+                {% else %} Very Good
+                {% endif %}
+            </td>                        
+        </tr>
+
+        <tr>
+            <td>
+                Student's technical skill/s to complete the project
+            </td>
+            <td>                            
+                {% if sf[5] == 0 %} N/A                            
+                {% elif sf[5] == 1 %} Very Unsatisfactory
+                {% elif sf[5] == 2 %} Unsatisfactory                        
+                {% elif sf[5] == 3 %} Neutral                            
+                {% elif sf[5] == 4 %} Good
+                {% else %} Very Good
+                {% endif %}
+            </td>                        
+        </tr>
+
+        <tr>
+            <td>
+                How would you rate the student's likelihood of achieving the next 6-months objectives
+            </td>
+            <td>                            
+                {% if sf[6] == 0 %} N/A                            
+                {% elif sf[6] == 1 %} Very Unsatisfactory
+                {% elif sf[6] == 2 %} Unsatisfactory                        
+                {% elif sf[6] == 3 %} Neutral                            
+                {% elif sf[6] == 4 %} Good
+                {% else %} Very Good
+                {% endif %}
+            </td>                        
+        </tr>
+        
+        <tr>
+            <td width="60%">
+                If a progress review meeting has taken place in the period converd by this report, have any recoomendations from that meeting been carried output?
+            </td>
+            <td>
+                {% if sf[7] == 0 %} N/A
+                {% elif sf[7] == 1 %} Yes                            
+                {% else %} No
+                {% endif %}                            
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                Comments            
+            </td>
+            <td>
+                {{sf[8]}}
+            </td>
+        </tr>        
+    </table>
+    {% endfor %}
+    {% endif %}
+
+    {% if convenor_feedback %}
+    <table class="table table-borderless tableSummary">
+        <tr>            
+            <th colspan="2">Section E - Convenor Feedback</th>            
+        </tr>
+        <tr>
+            <td>
+                <label for="">Convenor Name: </label> {{convenor_feedback[4]}} {{convenor_feedback[5]}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="">Highlight any area needing closer consideration:</label>
+            </td>
+            <td>
+                {% if convenor_feedback[2] %}
+                    {{convenor_feedback[2]}}
+                {% endif %}
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label>Rating</label>
+            </td>
+            <td>
+                {% if convenor_feedback[3]=='G'%}
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#198754" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                    <circle cx="8" cy="8" r="8"/>
+                    </svg>
+                {% elif convenor_feedback[3]=='O'%}
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fd7e14" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                    <circle cx="8" cy="8" r="8"/>
+                    </svg>
+                {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#dc3545" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                    <circle cx="8" cy="8" r="8"/>
+                </svg>
+                {% endif %}
+            </td>
+        </tr>    
+    </table>
+    {% endif %}
+    </div>
+
+  <!-- Section F -->  
+    {% if sectionF %}
+    <a class="toggleSummary" onclick="functionF()">Section F</a>    
+    <br>
+
+    <div id="divF" style="display: none;">     
+        <table class="table table-borderless tableSummary">
+
+            <tr>
+                <th colspan="2">SECTION F - Student Assessment of Supervision, Technical and Administrative Support</th>
+            </tr>
+        
+            <tr>
+                <td width="10%"><label>I would like to talk to</label></td>
+                <td>
+                    {% if sectionF[3] %}
+                    {{sectionF[1]}} ({{sectionF[4]}})
+                    {% else %}
+                    I don't want to discuss in person
+                    {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Comments</label></td>
+                <td width="40%">{{sectionF[2]}}</td>
+            </tr>
+        </table>
+    </div>
+    {% endif %}
+</section>
+
+  <script>
+    function functionA() {
+        var x = document.getElementById("divA");
+        if (x.style.display === "none") {
+        x.style.display = "block";
+        } else {
+        x.style.display = "none";
+        }
+    }
+
+    function functionB() {
+        var x = document.getElementById("divB");
+        if (x.style.display === "none") {
+        x.style.display = "block";
+        } else {
+        x.style.display = "none";
+        }
+    }
+
+    function functionC() {
+        var x = document.getElementById("divC");
+        if (x.style.display === "none") {
+        x.style.display = "block";
+        } else {
+        x.style.display = "none";
+        }
+    }
+
+    function functionD() {
+        var x = document.getElementById("divD");
+        if (x.style.display === "none") {
+        x.style.display = "block";
+        } else {
+        x.style.display = "none";
+        }
+    }
+
+    function functionF() {
+        var x = document.getElementById("divF");
+        if (x.style.display === "none") {
+        x.style.display = "block";
+        } else {
+        x.style.display = "none";
+        }
+    }
+
+    function functionE() {
+        var x = document.getElementById("divE");
+        if (x.style.display === "none") {
+        x.style.display = "block";
+        } else {
+        x.style.display = "none";
+        }
+    }
+
+  </script>
+
+{% endblock %}

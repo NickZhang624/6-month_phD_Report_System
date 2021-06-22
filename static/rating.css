@@ -1,0 +1,103 @@
+form#evaluation input[type=radio], form#supervisor_feedback input[type=radio] {
+	-webkit-appearance: none;
+	width: 50px;
+	height: 50px;
+	border: none;
+	cursor: pointer;
+	transition: border 0.2s ease;
+	filter: grayscale(100%);
+	opacity: 0.5;
+	margin: 0 5px;
+	transition: all 0.2s ease;
+}
+form#evaluation input[type="radio"]:hover, form#evaluation input[type="radio"]:checked, form#supervisor_feedback input[type="radio"]:hover, form#supervisor_feedback input[type="radio"]:checked {
+	filter: grayscale(0);
+	opacity: 1;
+}
+form#evaluation input[type="radio"]:focus , form#supervisor_feedback input[type="radio"]:focus {
+	outline: 0;
+}
+form#evaluation input[type="radio"].VeryGood , form#supervisor_feedback input[type="radio"].VeryGood {
+	background: url('../static/images/vh.png') center;
+	background-size: cover;
+}
+form#evaluation input[type="radio"].Good , form#supervisor_feedback input[type="radio"].Good {
+	background: url('../static/images/h.png') center;
+	background-size: cover;
+}
+form#evaluation input[type="radio"].Neutral , form#supervisor_feedback input[type="radio"].Neutral {
+	background: url('../static/images/n.png') center;
+	background-size: cover;
+}
+form#evaluation input[type="radio"].Unsatisfactory , form#supervisor_feedback input[type="radio"].Unsatisfactory {
+	background: url('../static/images/u.png') center;
+	background-size: cover;
+}
+form#evaluation input[type="radio"].VeryUnsatisfactory, form#supervisor_feedback input[type="radio"].VeryUnsatisfactory {
+	background: url('../static/images/vu.png') center;
+	background-size: cover;
+}
+form#evaluation input[type="radio"].na, form#supervisor_feedback input[type="radio"].na {
+	background: url('../static/images/na.png') center;
+	background-size: cover;
+}
+
+form#evaluation input[type="radio"].Green , form#supervisor_feedback input[type="radio"].Green {
+	background: url('../static/images/Green.png') center;
+	background-size: cover;
+}
+form#evaluation input[type="radio"].Orange , form#supervisor_feedback input[type="radio"].Orange {
+	background: url('../static/images/Orange.png') center;
+	background-size: cover;
+}
+form#evaluation input[type="radio"].Red, form#supervisor_feedback input[type="radio"].Red {
+	background: url('../static/images/Red.png') center;
+	background-size: cover;
+}
+
+
+
+
+
+
+
+form#static_feedback input[type=radio] {
+	-webkit-appearance: none;
+	width: 50px;
+	height: 50px;
+	border: none;
+	cursor: pointer;
+	transition: border 0.2s ease;
+	filter: grayscale(100%);
+	opacity: 0.5;
+	margin: 0 5px;
+	transition: all 0.2s ease;
+}
+form#static_feedback input[type="radio"]:checked {
+	filter: grayscale(0);
+	opacity: 1;
+}
+form#static_feedback input[type="radio"].VeryGood {
+	background: url('../static/images/vh.png') center;
+	background-size: cover;
+}
+form#static_feedback input[type="radio"].Good {
+	background: url('../static/images/h.png') center;
+	background-size: cover;
+}
+form#static_feedback input[type="radio"].Neutral {
+	background: url('../static/images/n.png') center;
+	background-size: cover;
+}
+form#static_feedback input[type="radio"].Unsatisfactory {
+	background: url('../static/images/u.png') center;
+	background-size: cover;
+}
+form#static_feedback input[type="radio"].VeryUnsatisfactory {
+	background: url('../static/images/vu.png') center;
+	background-size: cover;
+}
+form#static_feedback input[type="radio"].na {
+	background: url('../static/images/na.png') center;
+	background-size: cover;
+}

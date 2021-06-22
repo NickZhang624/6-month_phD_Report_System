@@ -1,0 +1,295 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+<style>
+  #myProgress {
+    width: 100%;
+    background-color: #ddd;
+  }
+  
+  #myBar {
+    width: 1%;
+    height: 2px;
+    background-color: #04AA6D;
+  }
+  ul {
+  display: none;
+}
+.un_supervisor:hover + ul {
+  display: block;
+}
+</style>
+
+
+<section id="adminHome">
+  <h1>Admin</h1>
+
+  <button class="Completed btnAdmin btn-light active mr-4" onclick="functionCompleted()">Completed Reports</button>
+  <button class="Incompleted btnAdmin btn-light" onclick="functionIncompleted()">Incompleted & Overdue Reports</button>  
+
+  <form action="/admin" method="POST">
+    <select name="search" id="search" class="dropdown-header col-md-4 mt-4 mb-4 mr-4">
+      {% if search == "Department of Environmental Management" %}
+        <option class="dropdown-item" selected="selected" value="Department of Environmental Management">Department of Environmental Management</option>
+        <option class="dropdown-item" value="Department of Tourism Sport and Society">Department of Tourism Sport and Society</option>
+        <option class="dropdown-item" value="School of Landscape Architecture">School of Landscape Architecture</option>
+        {% elif search == "Department of Tourism Sport and Society" %}
+        <option class="dropdown-item" value="Department of Environmental Management">Department of Environmental Management</option>
+        <option class="dropdown-item" selected="selected" value="Department of Tourism Sport and Society">Department of Tourism Sport and Society</option>
+        <option class="dropdown-item" value="School of Landscape Architecture">School of Landscape Architecture</option>
+        {% elif search == "School of Landscape Architecture" %}
+        <option class="dropdown-item" value="Department of Environmental Management">Department of Environmental Management</option>
+        <option class="dropdown-item" value="Department of Tourism Sport and Society">Department of Tourism Sport and Society</option>
+        <option class="dropdown-item" selected="selected" value="School of Landscape Architecture">School of Landscape Architecture</option>
+        {% else %}
+        <option class="dropdown-item" value="Department of Environmental Management">Department of Environmental Management</option>
+        <option class="dropdown-item" value="Department of Tourism Sport and Society">Department of Tourism Sport and Society</option>
+        <option class="dropdown-item" value="School of Landscape Architecture">School of Landscape Architecture</option>
+      {% endif %}
+    </select>
+
+  <button class="sbmBtn mt-4 col-lg-2" onclick="move()">Search</button>
+  <br><br><br>
+
+  <div id="myProgress" style="display: none;">
+    <div id="myBar"></div>
+  </div>
+  </form>
+
+  <form  action="/admin" method="GET" > 
+    <!-- class="admin mt-4" -->
+  <table class = 'table table-striped table-hover'>
+  <tr>
+    <th>Student</th>
+    <th>Thesis Title</th>
+    <th>Student Status</th>
+    <th>Supervisor Status</th>
+    <th>Convenor Status</th>
+    <th>Last Update Date</th>
+    <th>Action</th>
+  </tr>
+
+
+  {% if search == "Department of Environmental Management" %}
+
+  {% for x in select_result %}
+  {% if x[5] is not none and x[8] is not none and x[9] is not none %}
+  {% if x[7] == 'Department of Environmental Management' %}
+  <tr class="completedreport" style="display: table-row;">
+    <td><a href="/admin/view?student={{x[1]}}&reportID={{x[2]}}&admin=16">{{x[1]}}</a></td>
+    <td>{{x[3]}}</td>
+    <td>Completed</td>
+    <td>Completed</td>
+    <td>Completed</td>
+
+    {% for y in lastupdatedate_admin %}
+    {% if x[2] == y[1] %}
+    <td>{{y[3]}}</td>
+    {% endif %}
+    {% endfor %}
+
+    {% for y in lastupdatedate_admin %}
+    {% if x[2] == y[1] %}
+    {% if y[4] is none %}
+    <td><a href="/notification?student={{x[0]}}&reportid={{x[2]}}">Complete</a></td>
+    {% else %}
+    <td><a>Done</a></td>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+  </tr>
+  {% endif %}
+  {% endif %}
+  {% endfor %}
+
+
+  {% for x in select_result %}
+  {% if x[5] is none or x[8] is none or x[9] is none %}
+  {% if x[7] == 'Department of Environmental Management' %}
+  <tr class="incompletedreport" style="display: none;">
+    <td><a href="/admin/view?student={{x[1]}}&reportID={{x[2]}}&admin=16">{{x[1]}}</a></td>
+    <td>{{x[3]}}</td>
+
+    {% if x[5] is not none %}
+    <td>Completed</td>
+    {% else %}
+    <td>Incompleted</td>
+    {% endif %}
+
+    {% if x[9] is not none %}
+    <td>Completed</td>
+    {% else %}
+    <td>Incompleted</td>
+    {% endif %}
+
+    {% if x[8] is not none %}
+    <td>Completed</td>
+    {% else %}
+    <td>Incompleted</td>
+    {% endif %}
+
+    {% for y in lastupdatedate_admin %}
+    {% if x[2] == y[1] %}
+    <td>{{y[3]}}</td>
+    {% endif %}
+    {% endfor %}
+    <td><a href="/notification?student={{x[0]}}&stustatus={{x[5]}}&convenor=18&constatus={{x[8]}}&supstatus={{x[9]}}&reportid={{x[2]}}">Send Reminder</a></td>
+  </tr>
+  {% endif %}
+  {% endif %}
+  {% endfor %}
+  <tr class="incompletedreport" style="display: none;"></tr>
+
+
+
+
+  {% elif search == "Department of Tourism Sport and Society" %}
+  {% for x in select_result %}
+  {% if x[5] is not none and x[8] is not none and x[9] is not none %}
+  {% if x[7] == 'Department of Tourism Sport and Society' %}
+  <tr class="completedreport" style="display: table-row;">
+    <td><a href="/admin/view?student={{x[1]}}&reportID={{x[2]}}&admin=16">{{x[1]}}</a></td>
+    <td>{{x[3]}}</td>
+    <td>Completed</td>
+    <td>Completed</td>
+    <td>Completed</td>
+
+    {% for y in lastupdatedate_admin %}
+    {% if x[2] == y[1] %}
+    <td>{{y[3]}}</td>
+    {% endif %}
+    {% endfor %}
+
+    {% for y in lastupdatedate_admin %}
+    {% if x[2] == y[1] %}
+    {% if y[4] is none %}
+    <td><a href="/notification?student={{x[0]}}&reportid={{x[2]}}">Complete</a></td>
+    {% else %}
+    <td><a>Done</a></td>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+  </tr>
+  {% endif %}
+  {% endif %}
+  {% endfor %}
+
+
+  {% for x in select_result %}
+  {% if x[5] is none or x[8] is none or x[9] is none %}
+  {% if x[7] == 'Department of Tourism Sport and Society' %}
+  <tr class="incompletedreport" style="display: none;">
+    <td><a href="/admin/view?student={{x[1]}}&reportID={{x[2]}}&admin=16">{{x[1]}}</a></td>
+    <td>{{x[3]}}</td>
+
+    {% if x[5] is not none %}
+    <td>Completed</td>
+    {% else %}
+    <td>Incompleted</td>
+    {% endif %}
+
+    {% if x[9] is not none %}
+    <td>Completed</td>
+    {% else %}
+    <td>Incompleted</td>
+    {% endif %}
+
+    {% if x[8] is not none %}
+    <td>Completed</td>
+    {% else %}
+    <td>Incompleted</td>
+    {% endif %}
+
+    {% for y in lastupdatedate_admin %}
+    {% if x[2] == y[1] %}
+    <td>{{y[3]}}</td>
+    {% endif %}
+    {% endfor %}
+    <td><a href="/notification?student={{x[0]}}&stustatus={{x[5]}}&convenor=18&constatus={{x[8]}}&supstatus={{x[9]}}&reportid={{x[2]}}">Send Reminder</a></td>
+  </tr>
+  {% endif %}
+  {% endif %}
+  {% endfor %}
+  <tr class="incompletedreport" style="display: none;"></tr>
+
+
+
+  {% elif search == "School of Landscape Architecture" %}
+  {% for x in select_result %}
+  {% if x[5] is not none and x[8] is not none and x[9] is not none %}
+  {% if x[7] == 'School of Landscape Architecture' %}
+  <tr class="completedreport" style="display: table-row;">
+    <td><a href="/admin/view?student={{x[1]}}&reportID={{x[2]}}&admin=16">{{x[1]}}</a></td>
+    <td>{{x[3]}}</td>
+    <td>Completed</td>
+    <td>Completed</td>
+    <td>Completed</td>
+
+    {% for y in lastupdatedate_admin %}
+    {% if x[2] == y[1] %}
+    <td>{{y[3]}}</td>
+    {% endif %}
+    {% endfor %}
+
+    {% for y in lastupdatedate_admin %}
+    {% if x[2] == y[1] %}
+    {% if y[4] is none %}
+    <td><a href="/notification?student={{x[0]}}&reportid={{x[2]}}">Complete</a></td>
+    {% else %}
+    <td><a>Done</a></td>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+  </tr>
+  {% endif %}
+  {% endif %}
+  {% endfor %}
+
+  {% for x in select_result %}
+  {% if x[5] is none or x[8] is none or x[9] is none %}
+  {% if x[7] == 'School of Landscape Architecture' %}
+  <tr class="incompletedreport" style="display: none;">
+    <td><a href="/admin/view?student={{x[1]}}&reportID={{x[2]}}&admin=16">{{x[1]}}</a></td>
+    <td>{{x[3]}}</td>
+
+    {% if x[5] is not none %}
+    <td>Completed</td>
+    {% else %}
+    <td>Incompleted</td>
+    {% endif %}
+
+    {% if x[9] is not none %}
+    <td>Completed</td>
+    {% else %}
+    <td>Incompleted</td>
+    {% endif %}
+
+    {% if x[8] is not none %}
+    <td>Completed</td>
+    {% else %}
+    <td>Incompleted</td>
+    {% endif %}
+
+    {% for y in lastupdatedate_admin %}
+    {% if x[2] == y[1] %}
+    <td>{{y[3]}}</td>
+    {% endif %}
+    {% endfor %}
+    <td><a href="/notification?student={{x[0]}}&stustatus={{x[5]}}&convenor=18&constatus={{x[8]}}&supstatus={{x[9]}}&reportid={{x[2]}}">Send Reminder</a></td>
+  </tr>
+  {% endif %}
+  {% endif %}
+  {% endfor %}
+  <tr class="incompletedreport" style="display: none;"></tr>
+
+  {% endif %}
+
+
+  </table>
+  </form>
+</section>
+{% endblock %}

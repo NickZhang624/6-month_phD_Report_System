@@ -1,0 +1,991 @@
+{% extends 'layout.html' %}
+{% block title %}
+Lincoln University Postgraduate Reporting Portal
+{% endblock %}
+
+{% block style %}
+
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='modal.css')}}">
+<script src="{{url_for('static', filename='modal.js')}}"></script>
+
+
+<!-- form with icon -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
+
+<!-- Bootstrap Core CSS -->
+<!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+
+<!-- Transpose Javascript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+{% endblock %}
+
+{% block content %}
+
+<h2> SECTION A - Student Records</h2>
+
+<!-- TABLE CONTENT START-->
+<!-- Student Information Table -->
+<section id="sec-A1">
+    <h3>Student Information</h3>
+    <table class="table table-borderless tableID">
+        <thead>
+            <tr>
+                <td width=22%>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                    </svg>  Student Name
+                </td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-person-badge" viewBox="0 0 16 16">
+                        <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
+                  </svg>  Student ID
+                </td>
+                <td> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                        <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                  </svg>  Enrolment Date
+                </td>
+                <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-mailbox" viewBox="0 0 16 16">
+                        <path d="M4 4a3 3 0 0 0-3 3v6h6V7a3 3 0 0 0-3-3zm0-1h8a4 4 0 0 1 4 4v6a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V7a4 4 0 0 1 4-4zm2.646 1A3.99 3.99 0 0 1 8 7v6h7V7a3 3 0 0 0-3-3H6.646z"/>
+                        <path d="M11.793 8.5H9v-1h5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.354-.146l-.853-.854zM5 7c0 .552-.448 0-1 0s-1 .552-1 0a1 1 0 0 1 2 0z"/>
+                    </svg>  Current Address
+                </td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-telephone" viewBox="0 0 16 16">
+                        <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                    </svg>  Phone
+                </td>
+                <td>
+                    <img src="../static/images/study.png" width="16" height="16" alt="study icon"> Study Mode
+                </td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-building" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+                        <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
+                    </svg>  Department
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td width=78%>{{student_name}}</td>
+                <td>{{student_id}}</td>
+                <td>{{enrolment_date}}</td>
+                <td>{{address}}</td>
+                <td>{{phone}}</td>
+                <td>{{study_mode}}</td>
+                <td>{{department}}</td>           
+            </tr>
+           <br>
+        </tbody>
+    </table>
+    <button type="button" class="myBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#3147e8" class="bi bi-pencil-square" viewBox="0 0 16 16">
+            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+        </svg>
+    </button>
+</section>
+
+<!-- Thesis Information Table -->
+<section id="sec-A2">
+    <table class="table table-borderless tableID">
+        <h3>Thesis Information</h3>
+        <thead>
+            <tr>
+                <td width=22%>Thesis Title</td>
+
+                    {% for s in supervisors %}                
+                <td>            
+                    {% if s[0] == 'Supervisor' %}
+                    Chief Supervisor
+                    {% elif s[0] == 'Associate' %}
+                    Associate Supervisor
+                    {% else %}
+                    Other Supervisors
+                    {% endif %}
+                </td>
+                    {% endfor %}                    
+            </tr>
+        </thead>            
+        <tbody>
+            <tr>
+            <td width=78%>{{thesis_title}}</td>
+                {% for s in supervisors %}                
+            <td>{{s[1]}} {{s[2]}}</td>                
+                {% endfor %}            
+            </tr>
+        </tbody>
+        <br>
+    </table>
+    <button type="button" class="myBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#3147e8" class="bi bi-pencil-square" viewBox="0 0 16 16">
+            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+        </svg>
+    </button>
+</section>
+
+<!-- Scholarships Table -->
+<section id="sec-A3">
+    <table class="table table-borderless tableID">
+        <h3>Scholarships</h3>
+        <thead>
+            <tr>
+                {% for s in scholarships %}
+                <td width=22%>
+                    <img src="/static/images/scholarship.png" alt="Scholarship Icon" width="20">  Scholarship Name
+                </td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                    <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
+                  </svg>  Value
+                </td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-hourglass" viewBox="0 0 16 16">
+                    <path d="M2 1.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1-.5-.5zm2.5.5v1a3.5 3.5 0 0 0 1.989 3.158c.533.256 1.011.791 1.011 1.491v.702c0 .7-.478 1.235-1.011 1.491A3.5 3.5 0 0 0 4.5 13v1h7v-1a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351v-.702c0-.7.478-1.235 1.011-1.491A3.5 3.5 0 0 0 11.5 3V2h-7z"/>
+                  </svg>  Tenure
+                </td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                        <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                    </svg>  End Date
+                </td>
+                {% endfor %}
+            </tr> 
+        </thead>
+        <tbody>
+            <tr>
+                {% for s in scholarships %}
+                <td>{{s[0]}}</td>
+                <td>{{s[1]}}</td>
+                <td>{{s[4]}}</td>
+                <td>{{s[3]}}</td>                
+                {% endfor %}
+            </tr>
+           <br>  
+        </tbody>
+    </table>
+    <button type="button" class="myBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#3147e8" class="bi bi-pencil-square" viewBox="0 0 16 16">
+            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+        </svg>
+    </button>
+    </section>
+
+<!-- Employment history Table-->
+<section id="sec-A4">
+    <table class="table table-borderless tableID">
+        <h3>Employment history</h3>           
+        <thead>
+            <tr>
+                {% for e in employment %}
+                <td width=22%>Job Title</td>
+                <td>Work Type</td>
+                <td>Supervisor Name</td>
+                <td>Hours/Week</td>
+                {% endfor %}   
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for e in employment %}
+                <td width=78%>{{e[0]}}</td>        
+                <td>
+                    {% if e[1] == 'Teaching' %}
+                    Full Time
+                    {% elif e[1] == 'Research' %}
+                    Part Time
+                    {% elif e[1] == 'Other' %}
+                    Casual
+                    {% else %}
+                    {{e[1]}}
+                    {% endif %}                    
+                    </td>    
+                <td>{{e[3]}} {{e[4]}}</td>        
+                <td>{{e[2]}}</td>
+                {% endfor %}        
+            </tr>
+            <br>
+        </tbody>                
+        <input name='reportid' value='{{report_id}}' hidden>
+        
+    </table>    
+    <button type="button" class="myBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#3147e8" class="bi bi-pencil-square" viewBox="0 0 16 16">
+            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+        </svg>
+    </button>
+    <!-- Edit Employment history Button  -->
+</section>
+
+<!-- buttons  -->
+<div class="form-group buttonArea">       
+    <button type="submit" name="submit" value ="Save & Exit" class="snxBtn myBtn" title="Save & Exit" onclick="window.location.href='/student'">
+        <i class="glyphicon glyphicon-floppy-save"></i>
+    </button>
+    <button type="submit" name="submit" value ="Next" class="nxtBtn" title="Next" onclick="window.location.href='/section_b1/edit?report={{report_id}}'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#3147e8" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+            <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+    </button>
+</div>
+<!-- TABLE CONTENT END -->
+
+
+<!--FORMS START-->
+<!-- Student information form -->
+<div id='studentInfo' class='modal'>
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="row">
+            <div class="col-md-10">
+            <form class="form-horizontal" id='sectionAStudent' action='/section_a/edit/student' method="POST">           
+                <div class="form-group"> <!-- student name -->
+                    <label class="col-md-3 control-label" for=''>Student Name</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-person" viewBox="0 0 16 16">
+                                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                </svg>
+                            </div>
+                            <input id="studentName" name='studentName' type="text" value='{{student_name}}' class="form-control input-md" aria-label="Input group example" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>       
+                <div class="form-group"> <!-- student ID -->
+                    <label class="col-md-3 control-label" for=''>Student ID</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-person-badge" viewBox="0 0 16 16">
+                                    <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                    <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
+                                </svg>
+                            </div>
+                            <input name='studentId' type="text" value='{{student_id}}'  aria-label="Input group example" aria-describedby="basic-addon1" class="form-control input-md" aria-label="Input group example" aria-describedby="basic-addon1" readonly>
+                        </div>
+                    </div>
+                </div>        
+                <div class="form-group"> <!-- Enrolment date -->
+                    <label class="col-md-3 control-label" for=''>Enrolment Date</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                    <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                </svg>
+                            </div>
+                            <input name='enrolDate' type="date" value='{{enrolment_date}}' aria-label="Input group example" aria-describedby="basic-addon1" type="text" class="form-control input-md" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group"> <!-- phone -->
+                    <label class="col-md-3 control-label" for=''>Phone</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-telephone" viewBox="0 0 16 16">
+                                    <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                                </svg>
+                            </div>
+                            <input name='ph' type="number" value='{{phone}}' aria-label="Input group example" aria-describedby="basic-addon1"
+                            type="text" class="form-control input-md">                        
+                        </div>
+                    </div>
+                </div>                       
+                <div class="form-group"> <!-- current address -->
+                    <label class="col-md-3 control-label" for=''>Current Address</label>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-mailbox" viewBox="0 0 16 16">
+                                    <path d="M4 4a3 3 0 0 0-3 3v6h6V7a3 3 0 0 0-3-3zm0-1h8a4 4 0 0 1 4 4v6a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V7a4 4 0 0 1 4-4zm2.646 1A3.99 3.99 0 0 1 8 7v6h7V7a3 3 0 0 0-3-3H6.646z"/>
+                                    <path d="M11.793 8.5H9v-1h5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.354-.146l-.853-.854zM5 7c0 .552-.448 0-1 0s-1 .552-1 0a1 1 0 0 1 2 0z"/>
+                                </svg>
+                            </div>
+                            <input name='address' type="text" value='{{address}}' aria-label="Input group example" aria-describedby="basic-addon1"
+                            type="text" class="form-control input-md">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group"> <!-- department -->
+                    <label class="col-md-3 control-label" for=''>Department</label>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-building" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+                                    <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
+                                </svg>
+                            </div>
+                            <input name='department' type="text" value='{{department}}' aria-label="Input group example" aria-describedby="basic-addon1"
+                                type="text" class="form-control input-md">                 
+                        </div>
+                    </div>
+                </div>          
+                <div class="form-group"> <!--study mode  -->
+                    <label class="col-md-3 control-label" for="Study Mode">Study Mode</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <img src="../static/images/study.png" width="16" height="16" alt="study icon">
+                            </div>
+                            <select class="dropdown-header" aria-label="Input group example" aria-describedby="basic-addon1" name='studyMode'>
+                                <option class="dropdown-item" value="Part-Time" {% if study_mode == 'Part-Time' %} SELECTED {% endif %}>Part-Time</option>
+                                <option class="dropdown-item" value="Full-Time" {% if study_mode == 'Full-Time' %} SELECTED {% endif %}>Full-Time</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>              
+                
+                <input name='luemail' value='{{luemail}}' hidden>
+                <input name='personalemail' value='{{personalemail}}' hidden>
+                <input name='reportid' value='{{report_id}}' hidden>
+                
+                <!-- confirm change button -->
+                <div class="form-group">                
+                    <div class="col-md-5 mt-5 control-label">                     
+                        <button type="submit" value="Confirm Change" class="confChBtn" title="Confirm Changes">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#3147e8" class="bi bi-check2-circle" viewBox="0 0 16 16">
+                                <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+                                <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Thesis & Supervision Team form-->
+<div id='Thesis' class='modal'>
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form class="form-horizontal" id='sectionASupervision' action='/section_a/edit/thesis' method="POST">
+            <!--Thesis title-->
+            <div class="form-group"> 
+                <label class="col-md-3 control-label" for=''>Thesis Title</label>
+                <div class="col-md-7">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <img src="../static/images/study.png" width="16" height="16" alt="study icon">
+                        </div>
+                        <input class="form-control" name='thesis' type="text" value='{{thesis_title}}'>
+                    </div>
+                </div>
+            </div>
+            {% for s in supervisors %}
+            <!--main supervisor-->
+            <div class="form-group">
+                {% if s[0] == 'Supervisor' %}
+                <label class="col-md-3 control-label" for=''>Chief Supervisor</label>
+                <div class="col-md-4">
+                    <select  class="dropdown-header" name='chiefSupervisor'>
+                        <option class="dropdown-item" value='{{s[3]}}' selected>{{s[1]}} {{s[2]}}</option>
+                        {% for cs in available_chief_supervisors %}
+                        <option class="dropdown-item" value='{{cs[0]}}'>{{cs[1]}} {{cs[2]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                    <input type='hidden' name='delete[]' value='N'><input type='checkbox' title='Delete Supervisor' onclick="this.previousSibling.value='Y'">
+                    <label></label>
+                </div>
+            </div>
+            <!--associate supervisor-->
+            <div class="form-group">
+                {% elif s[0] == 'Associate' %}
+                <label class="col-md-3 control-label" for=''>Associate Supervisor</label>
+                <div class="col-md-4">
+                    <select  class="dropdown-header" name='associateSupervisor[]'>
+                        <option class="dropdown-item" value='{{s[3]}}' selected>{{s[1]}} {{s[2]}}</option>
+                        {% for os in available_other_supervisors %}
+                        <option class="dropdown-item" value='{{os[0]}}'>{{os[1]}} {{os[2]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-2"><!--delete supervisor button-->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                    <input type='hidden' name='delete[]' value='N'><input type='checkbox' title='Delete Supervisor' onclick="this.previousSibling.value='Y'">
+                    <label></label>
+                </div>
+            </div>
+            <!--other supervisor-->
+            <div class="form-group">
+                {% else %}
+                <label class="col-md-3 control-label" for=''>Other Supervisors</label>
+                <div class="col-md-4">
+                    <select class="dropdown-header" name='otherSupervisor[]'>
+                        <option class="dropdown-item" value='{{s[3]}}' selected>{{s[1]}} {{s[2]}}</option>
+                        {% for os in available_other_supervisors %}
+                        <option class="dropdown-item" value='{{os[0]}}'>{{os[1]}} {{os[2]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <!--delete supervisor button-->
+                <div class="col-md-2"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        </svg>
+                    <input type='hidden' name='delete[]' value='N'><input type='checkbox' title='Delete Supervisor' onclick="this.previousSibling.value='Y'">
+                    <label></label>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <!--add supervisor button-->
+            <!-- <div class="form-group">
+                <div class="control-label col-md-3">  
+                    <button aria-label="Input group example" aria-describedby="basic-addon1" type="button" value="Add A Supervisor" class="addBtn" title="Add A Supervisor" onclick="addScholarship();">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#3147e8" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                            <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+                        </svg>
+                    </button> 
+                </div>
+            </div> -->
+            <br>
+
+            <div id="addSupervisor">
+                <input type="button" value="Add A Supervisor" onclick="addSupervisor();"/>
+             </div>
+             <br>
+
+            
+            <div id="newSupervisor"><!--Fields for adding new supervisors go in here--></div>
+            <input name='reportid' value='{{report_id}}' hidden>
+            <!-- <input type="submit" value="Confirm Change"> -->
+            <div class="form-group">                
+                <div class="col-md-5 mt-5 control-label">
+                    <button type="submit" value="Confirm Change" class="confChBtn" title="Confirm Changes">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#3147e8" class="bi bi-check2-circle" viewBox="0 0 16 16">
+                            <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+                            <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+                        </svg>
+                    </button>   
+                </div>
+            </div>  
+        </form>
+    </div>
+</div>
+
+<!--Scholarships form-->
+<div id='scholarship' class='modal'>
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form class="form-horizontal" id='sectionAScholarship' action='/section_a/edit/scholarship' method="POST">
+            {% for s in scholarships %}
+            <!-- scholarship name -->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="Scholarship Name">Scholarship Name</label>
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <img src="/static/images/scholarship.png" width="20">
+                        </div>
+                        <input class="form-control" name='existing_scholarName[]' type="text" value='{{s[0]}}'>
+                        <input name='scholarship_uid[]' hidden value='{{s[5]}}'>                            
+                    </div>
+                </div>
+            </div>
+            <!-- value -->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="Value">Value</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                                    <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
+                                  </svg>
+                            </div>                            
+                            <input name='existing_value[]' type="number" value='{{s[1]}}' aria-label="Input group example" aria-describedby="basic-addon1" class="form-control input-md" aria-label="Input group example" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <!-- start date -->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="Start Date">Start Date</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                    <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                </svg>
+                            </div>                            
+                            <input name='existing_startdate[]' type="date" value='{{s[2]}}' aria-label="Input group example" aria-describedby="basic-addon1" class="form-control input-md" aria-label="Input group example" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+            </div>
+            <!-- end date -->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="End Date">End Date</label>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3147e8" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            </svg>
+                        </div>         
+                        <input name='existing_endDate[]' type="date" value='{{s[3]}}' aria-label="Input group example" aria-describedby="basic-addon1" class="form-control input-md" aria-label="Input group example" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <!--delete scholarship button-->
+                <div class="control-label col-md-7">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>                             
+                    <!-- <input name='delete[]' value='N' type="checkbox" title="Delete Scholarship"> -->
+                    <input type='hidden' name='delete[]' value='N'><input type='checkbox' title='Delete scholarship' onclick="this.previousSibling.value='Y'">
+                    <label for='delete[]'></label>
+                </div>
+            </div>
+
+            <!--delete scholarship button-->
+            <!-- <div class="form-group col-md-3"> 
+             
+            </div> -->
+            {% endfor %}
+
+            <!-- add scholarship button-->  
+            <div class="form-group">
+                <div class="control-label col-md-3">  
+                    <button aria-label="Input group example" aria-describedby="basic-addon1" type="button" value="Add A Scholarship" class="addBtn" title="Add A Supervisor" onclick="addScholarship();">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#3147e8" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                            <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+                        </svg>
+                    </button> 
+                </div>
+            </div>
+            
+            <!-- add new scholarip button -->
+            <div class="form-group">
+                <div class="col-md-10" id="newScholarship"><!--Fields for adding new supervisors go in here--></div>
+                <input aria-label="Input group example" aria-describedby="basic-addon1" name='reportid' value='{{report_id}}' hidden>
+            </div>
+            
+            <!-- confirm change button -->
+            <div class="form-group">                
+                <div class="col-md-5 mt-5 control-label"> 
+                    <button type="submit" value="Confirm Change" class="confChBtn" title="Confirm Changes">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#3147e8" class="bi bi-check2-circle" viewBox="0 0 16 16">
+                            <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+                            <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Employment History  form-->
+<div id='employment' class='modal'>
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="row">
+            <div class="col-md-10">
+            <form class="form-horizontal" id='sectionAEmployment' action='/section_a/edit/job' method="POST">
+                {% for e in employment %}
+                <!-- job title  -->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="Job Title">Job Title</label>
+                    <div class="col-md-4">                
+                        <input name='jobTitle[]' type="text" value='{{e[0]}}' aria-label="Input group example" aria-describedby="basic-addon1" class="form-control">                                           
+                    </div>
+                </div>
+                <input hidden name='jobid[]' value='{{e[5]}}'>
+                <!-- work type -->  
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="Work Type">Work Type</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <select class="dropdown-header input-md" aria-label="Input group example" aria-describedby="basic-addon1" name='workType[]'>
+                                {% if e[1]=='Teaching' %}
+                                <option class="dropdown-item" selected value='Teaching'>Full Time</option>
+                                <option class="dropdown-item" value='Research'>Part Time</option>
+                                <option class="dropdown-item" value='Other'>Casual</option>
+                                {% elif e[1]=='Research' %}
+                                <option class="dropdown-item" selected value='Research'>Part Time</option>
+                                <option class="dropdown-item" value='Teaching'>Full Time</option>
+                                <option class="dropdown-item" value='Other'>Casual</option>
+                                {% elif e[1]=='Other' %}
+                                <option class="dropdown-item" selected value='Other'>Casual</option>
+                                <option class="dropdown-item" value='Teaching'>Full Time</option>
+                                <option class="dropdown-item" value='Research'>Part Time</option>
+                                {% else %}
+                                <option class="dropdown-item" selected value=''></option>
+                                <option class="dropdown-item" value='Teaching'>Full Time</option>
+                                <option class="dropdown-item" value='Research'>Part Time</option>
+                                <option class="dropdown-item" value='Other'>Casual</option>
+                                {% endif %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- supervisor -->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="Supervisor Name">Supervisor Name</label>
+                    <div class="col-md-4">                      
+                        <!-- <input name='jobSupName[]' type="text" value='{{e[3]}} {{e[4]}}' aria-label="Input group example" aria-describedby="basic-addon1" class="form-control">                    -->
+                        <select class='dropdown-header' name='jobSup[]'>\
+                            <option class='dropdown-item' value='{{e[6]}}'>{{e[3]}} {{e[4]}}</option>\
+                            {% for i in job_supervisors %}\
+                            <option class='dropdown-item' value='{{i[0]}}'>{{i[1]}} {{i[2]}}</option>\
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <!-- <input name='jobSup[]' hidden value='{{e[6]}}'> -->
+                <!-- hours/week -->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="Hours/Week">Hours/Week</label>
+                    <div class="col-md-4">
+                           <input name='hours[]' type="number" value='{{e[2]}}' aria-label="Input group example" aria-describedby="basic-addon1" class="form-control input-md">                   
+                    </div>
+                    <!--delete student employment button-->
+                    <div class="control-label col-md-7"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        </svg>
+                        <input type='hidden' name='delete[]' value='N'><input type='checkbox' title='Delete job' onclick="this.previousSibling.value='Y'">
+                        <label for='delete[]'></label>
+                    </div>                     
+                </div>
+                
+                {% endfor %}
+
+                <!-- add job button --> 
+                <div class="form-group">
+                    <div class="col-md-3 control-label" id="addJob">     
+                        <button aria-label="Input group example" aria-describedby="basic-addon1" type="button" value="Add A Job" class="addBtn" title="Add A Job" onclick="addJob();">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#3147e8" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+                            </svg>
+                        </button>                    
+                    </div>                
+                </div>     
+                <!-- adding new job -->
+                <div class="form-group">
+                    <div class="col-md-8" id="newJob"><!--Fields for adding new job go in here--></div>
+                    <input aria-label="Input group example" aria-describedby="basic-addon1" name='reportid' value='{{report_id}}' hidden>
+                </div>       
+                <!-- confirm change button -->
+                <div class="form-group">
+                    <div class="col-md-5 mt-5 control-label">
+                        <button type="submit" value="Confirm Change" class="confChBtn" title="Confirm Changes">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#3147e8" class="bi bi-check2-circle" viewBox="0 0 16 16">
+                                <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+                                <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+                            </svg>
+                        </button>     
+                    </div>                     
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+
+<!--Section A Form Ends-->
+
+
+<!-- SCRIPTS -->
+<script>// Get the modal
+    var modal = document.getElementsByClassName("modal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementsByClassName("myBtn");
+    
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close");
+    
+    // When the user clicks the button, open the modal 
+    btn[0].onclick = function() {
+        modal[0].style.display = "block";
+    }
+
+    btn[1].onclick = function() {
+        modal[1].style.display = "block";
+    }
+    
+    btn[2].onclick = function() {
+        modal[2].style.display = "block";
+    }
+
+    btn[3].onclick = function() {
+        modal[3].style.display = "block";
+    }
+
+// When the user clicks on <span> (x), close the modal
+    span[0].onclick = function() {
+        modal[0].style.display = "none";
+    }
+    
+    span[1].onclick = function() {
+        modal[1].style.display = "none";
+    }
+
+    span[2].onclick = function() {
+        modal[2].style.display = "none";
+    }
+
+    span[3].onclick = function() {
+        modal[3].style.display = "none";
+    }
+    
+    window.onclick = function(event) {
+        if (event.target == modal[0]) {
+                modal[0].style.display = "none";
+            }
+            if (event.target == modal[1]) {
+            modal[1].style.display = "none";
+        }  
+        if (event.target == modal[2]) {
+            modal[2].style.display = "none";
+        }  
+        if (event.target == modal[3]) {
+            modal[3].style.display = "none";
+        }  
+    }
+</script>
+<script type="text/JavaScript">
+    function addSupervisor() {
+        // First create a DIV element.
+        var txtNewInputBox = document.createElement('div');
+    
+        // Then add the content (a new input box) of the element.
+        txtNewInputBox.innerHTML = "<div class='form-group'>\
+            <div class='input-group col-md-3'>\
+                <select class='dropdown-header' name='newSupervisor[]'>\
+                    {% for s in available_other_supervisors %} \
+                    <option class='dropdown-item' value='{{s[0]}}'>{{s[1]}} {{s[2]}}</option>\
+                    {% endfor %}\
+                </select>\
+            </div>\
+            <div class='input-group col-md-3'>\
+                <select class='dropdown-header' name='newSupervisorRole[]'>\
+                    <option class='dropdown-item' value='Associate'>Associate Supervisor</option>\
+                    <option class='dropdown-item' value='Other Supervisor'>Other Supervisor</option>\
+                </select>\
+            </div>\
+            <div class='col-md-2'>\
+                <input type='hidden' name='delete[]' value='N'><input type='checkbox' title='Delete supervisor' onclick='this.previousSibling.value=\"Y\"'>\
+                <label for='delete[]'>Delete</label>\
+            </div></div>";
+    
+        // Finally put it where it is supposed to appear.
+        document.getElementById("newSupervisor").appendChild(txtNewInputBox);
+    }
+
+    function original_addSupervisor() {
+        // First create a DIV element.
+        var txtNewInputBox = document.createElement('div');
+    
+        // Then add the content (a new input box) of the element.
+        txtNewInputBox.innerHTML = "\
+            <div class='form-group'>\
+                <div class='col-md-5'>\
+                    <select class='dropdown-header' name='newSupervisor[]'>\
+                        {% for s in available_other_supervisors %} \
+                        <option class='dropdown-item' value='{{s[0]}}'>{{s[1]}} {{s[2]}}</option>\
+                        {% endfor %}\
+                    </select>\
+                </div>\
+                <div class='col-md-4'>\
+                    <select class='dropdown-header' name='newSupervisorRole[]'>\
+                        <option class='dropdown-item' value='Supervisor'>Chief Supervisor</option>\
+                        <option class='dropdown-item' value='Associate'>Associate Supervisor</option>\
+                        <option class='dropdown-item' value='Other Supervisor'>Other Supervisor</option>\
+                    </select>\
+                </div>\
+                <div class='col-md-2'>\
+                    <svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='red' class='bi bi-trash' viewBox='0 0 16 16'>\
+                        <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>\
+                        <path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>\
+                    </svg>\
+                    <input type='hidden' name='delete[]' value='N'><input type='checkbox' title='Delete supervisor' onclick='this.previousSibling.value=\"Y\"'>\
+                    <label for='delete[]'></label>\
+                </div>\
+            </div><br>";
+    
+        // Finally put it where it is supposed to appear.
+        document.getElementById("original_newSupervisor").appendChild(txtNewInputBox);
+    }
+
+    function addScholarship() {
+        // First create a DIV element.
+        var txtNewInputBox = document.createElement('div');
+
+        // Then add the content (a new input box) of the element.
+        txtNewInputBox.innerHTML = "\
+                <div class='form-group'>\
+                    <label for='' class='col-md-3 control-label'>Scholarship Name</label>\
+                    <div class='col-md-4'>\
+                        <select class='dropdown-header' name='new_scholarId[]'>\
+                            {% for s in available_scholarships %} \
+                            <option class='dropdown-item' value='{{s[0]}}'>{{s[1]}} {{s[2]}}</option>\
+                            {% endfor %}\
+                        </select>\
+                    </div>\
+                </div>\
+                <div class='form-group'>\
+                    <label for='' class='col-md-3 control-label'>Value</label>\
+                    <div class='col-md-2'>\
+                        <input name='new_value[]' type='number' class='form-control'>\
+                    </div>\
+                </div>\
+                <div class='form-group'>\
+                    <label for='' class='col-md-3 control-label'>Start Date</label>\
+                    <div class='col-md-2'>\
+                        <input name='new_startdate[]' type='date' class='form-control'>\
+                    </div>\
+                </div>\
+                <div class='form-group'>\
+                    <label for='' class='col-md-3 control-label'>End Date</label>\
+                    <div class='col-md-2'>\
+                        <input name='new_endDate[]' type='date' class='form-control'>\
+                    </div>\
+                    <div class='col-md-5'>\
+                        <input type='hidden' name='new_delete[]' value='N'><input type='checkbox' title='Delete scholarship' onclick='this.previousSibling.value=\"Y\"'>\
+                        <label for='new_delete[]'><svg xmlns='http://www.w3.org/2000/svg' width='27' height='27' fill='red' class='bi bi-trash' viewBox='0 0 16 16'>\
+                        <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>\
+                        <path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>\
+                    </svg>\
+                    </label>\
+                    </div>\
+                </div><br>";
+     
+        // Finally put it where it is supposed to appear.
+        document.getElementById("newScholarship").appendChild(txtNewInputBox);
+    }
+
+    function addJob() {
+        // First create a DIV element.
+        var txtNewInputBox = document.createElement('div');
+    
+        // Then add the content (a new input box) of the element.
+        txtNewInputBox.innerHTML = "\
+            <div class='form-group'>\
+                <label class='col-md-3 control-label' for=''>Job Title</label>\
+                <div class='col-md-5'>\
+                    <input name='new_jobTitle[]' type='text' class='form-control'>\
+                </div>\
+            </div>\
+            <div class='form-group'>\
+                <label class='col-md-3 control-label' for=''>Work Type</label>\
+                <div class='col-md-5'>\
+                    <select class='dropdown-header' name='new_workType[]'>\
+                        <option class='dropdown-item' value='Full Time'>Full Time</option>\
+                        <option class='dropdown-item' value='Part Time'>Part Time</option>\
+                        <option class='dropdown-item' value='Casual'>Casual</option>\
+                    </select>\
+                </div>\
+            </div>\
+            <div class='form-group'>\
+                <label class='col-md-3 control-label' for=''>Supervisor Name</label>\
+                <div class='col-md-5'>\
+                    <select class='dropdown-header' name='new_jobSup[]'>\
+                        <option class='dropdown-item' value='Null'>N/A</option>\
+                        {% for i in job_supervisors %}\
+                        <option class='dropdown-item' value='{{i[0]}}'>{{i[1]}} {{i[2]}}</option>\
+                        {% endfor %}\
+                    </select>\
+                </div>\
+            </div>\
+            <div class='form-group'>\
+                <label class='col-md-3 control-label' for=''>Hours/Week</label>\
+                <div class='col-md-2'>\
+                    <input name='new_hours[]' type='number' class='form-control'>\
+                </div>\
+            </div>\
+            <div class='form-group'>\
+                <div class='col-md-5 mt-5'>\
+                    <svg xmlns='http://www.w3.org/2000/svg' width='27' height='27' fill='red' class='bi bi-trash' viewBox='0 0 16 16'>\
+                        <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>\
+                        <path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>\
+                    </svg>\
+                    <input type='hidden' name='new_delete[]' value='N'><input type='checkbox' title='Delete job' onclick='this.previousSibling.value=\"Y\"'>\
+                    <label for='new_delete[]'>Delete</label>\
+                </div>\
+            </div><br>";
+    
+        // Finally put it where it is supposed to appear.
+        document.getElementById("newJob").appendChild(txtNewInputBox);
+    }
+</script>
+
+
+<!--Delete supervisor: if checkbox checked, 'Y', else 'N'-->
+<!-- <script>
+    $("form").submit(function () {
+
+        var this_master = $(this);
+    
+        this_master.find('input[type="checkbox"]').each( function () {
+            var checkbox_this = $(this);
+    
+    
+            if( checkbox_this.is(":checked") == true ) {
+                checkbox_this.attr('value','Y');
+            } else {
+                checkbox_this.prop('checked',true);
+                //DONT' ITS JUST CHECK THE CHECKBOX TO SUBMIT FORM DATA    
+                checkbox_this.attr('value','N');
+            }
+        })
+    })
+</script> -->
+
+
+<!-- Transpose Script -->
+<script>
+    $( document ).ready(function() {
+    $(".tableID").each(function() {
+            var $this = $(this);
+            var newTransposedRow = [];
+            $this.find("tr").each(function(){
+                var i = 0;
+                $(this).find("td").each(function(){
+                    i++;
+                    if(newTransposedRow[i] === undefined) { newTransposedRow[i] = $("<tr></tr>"); }
+                    newTransposedRow[i].append($(this));
+                });
+            });
+            $this.find("tr").remove();
+            $.each(newTransposedRow, function(){
+                $this.append(this);
+            });
+        });
+    });
+</script>
+
+{% endblock %}

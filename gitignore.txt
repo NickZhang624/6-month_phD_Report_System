@@ -1,0 +1,309 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+<<<<<<< HEAD
+# C extensions
+*.so
+
+=======
+<<<<<<< HEAD
+ 
+
+# C extensions
+*.so
+
+ 
+
+=======
+# C extensions
+*.so
+
+>>>>>>> 2a8279a0edfc5b3001b67ff154ead0cad8865e6b
+>>>>>>> main
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+ 
+
+=======
+>>>>>>> 2a8279a0edfc5b3001b67ff154ead0cad8865e6b
+>>>>>>> main
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+ 
+
+=======
+>>>>>>> 2a8279a0edfc5b3001b67ff154ead0cad8865e6b
+>>>>>>> main
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+ 
+
+=======
+>>>>>>> 2a8279a0edfc5b3001b67ff154ead0cad8865e6b
+>>>>>>> main
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+ 
+
+=======
+>>>>>>> 2a8279a0edfc5b3001b67ff154ead0cad8865e6b
+>>>>>>> main
+# Translations
+*.mo
+*.pot
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+ 
+
+=======
+>>>>>>> 2a8279a0edfc5b3001b67ff154ead0cad8865e6b
+>>>>>>> main
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+ 
+
+=======
+>>>>>>> 2a8279a0edfc5b3001b67ff154ead0cad8865e6b
+>>>>>>> main
+# Flask stuff:
+instance/
+.webassets-cache
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+ 
+
+# Scrapy stuff:
+.scrapy
+
+ 
+
+# Sphinx documentation
+docs/_build/
+
+ 
+
+# PyBuilder
+target/
+
+ 
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+ 
+
+=======
+>>>>>>> main
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+<<<<<<< HEAD
+=======
+>>>>>>> 2a8279a0edfc5b3001b67ff154ead0cad8865e6b
+>>>>>>> main
+# IPython
+profile_default/
+ipython_config.py
+
+<<<<<<< HEAD
+# pyenv
+.python-version
+
+=======
+<<<<<<< HEAD
+ 
+
+# pyenv
+.python-version
+
+ 
+
+=======
+# pyenv
+.python-version
+
+>>>>>>> 2a8279a0edfc5b3001b67ff154ead0cad8865e6b
+>>>>>>> main
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+ 
+
+>>>>>>> main
+# celery beat schedule file
+celerybeat-schedule
+
+ 
+
+# SageMath parsed files
+*.sage.py
+
+<<<<<<< HEAD
+=======
+ 
+
+=======
+# celery beat schedule file
+celerybeat-schedule
+
+# SageMath parsed files
+*.sage.py
+
+>>>>>>> 2a8279a0edfc5b3001b67ff154ead0cad8865e6b
+>>>>>>> main
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+ 
+
+=======
+>>>>>>> 2a8279a0edfc5b3001b67ff154ead0cad8865e6b
+>>>>>>> main
+# Spyder project settings
+.spyderproject
+.spyproject
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+ 
+
+>>>>>>> main
+# Rope project settings
+.ropeproject
+
+ 
+
+# mkdocs documentation
+/site
+
+<<<<<<< HEAD
+=======
+ 
+
+=======
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+>>>>>>> 2a8279a0edfc5b3001b67ff154ead0cad8865e6b
+>>>>>>> main
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+<<<<<<< HEAD
+# Pyre type checker
+.pyre/
+
+# VS Code settings
+.vscode/
+=======
+<<<<<<< HEAD
+ 
+
+# Pyre type checker
+.pyre/
+
+ 
+
+# VS Code settings
+.vscode/
+=======
+# Pyre type checker
+.pyre/
+
+# VS Code settings
+.vscode/
+>>>>>>> 2a8279a0edfc5b3001b67ff154ead0cad8865e6b
+>>>>>>> main
